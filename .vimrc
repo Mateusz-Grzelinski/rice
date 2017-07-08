@@ -14,7 +14,6 @@ nnoremap <Leader>v :e! $MYVIMRC<CR>
 nnoremap <c-s> :w<CR>
 noremap <C-n> :NERDTreeToggle<CR>
 nnoremap <F1> :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
-" nnoremap <F4> :nohl<CR>
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
 nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
 inoremap <F5> <ESC>:w<CR>:!python %<CR>
