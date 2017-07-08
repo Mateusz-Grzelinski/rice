@@ -7,3 +7,6 @@ Work in (never ending) progress.
 My focus is on vim with Python plus some scripting.
 
 Workflow is not smooth yet. 
+
+NOT TESTED!!
+PROBABLY NOT WORKING!!
