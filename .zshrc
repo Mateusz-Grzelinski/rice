@@ -44,6 +44,10 @@ eval $(thefuck --alias)
 unsetopt autocd
 unsetopt extendedglob
 bindkey -e
+# bash style comment
+bindkey '\e#' pound-insert
+# setopt interactivecomments
+
 # bindkey '\e.' insert-last-word
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
