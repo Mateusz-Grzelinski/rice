@@ -35,6 +35,7 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 
+eval $(thefuck --alias)
 # plugins=(zsh-completions zsh-pip-completion)
 
 # HISTFILE=~/.zhistfile
@@ -42,7 +43,8 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 # SAVEHIST=1000
 unsetopt autocd
 unsetopt extendedglob
-# bindkey -e
+bindkey -e
+# bindkey '\e.' insert-last-word
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/mat/.zshrc'

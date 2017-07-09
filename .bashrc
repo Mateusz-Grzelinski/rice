@@ -58,6 +58,8 @@ alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
 
+eval $(thefuck --alias)
+
 # get your <ctrl>s and <ctrl>q back too normal(meaning they do nothing)
 stty -ixon
 
