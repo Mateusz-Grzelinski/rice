@@ -45,6 +45,8 @@ alias findr="find ! -readable -prune -o"
 # alias c="clear"
 alias ll="ls -lh"
 alias la="ls -ah"
+alias stop="systemctl stop"
+alias start="systemctl start"
 alias blender="optirun ~/Pulpit/blender-2.78/blender" 
 
 eval "$(fasd --init auto posix-alias bash-ccomp-install)"

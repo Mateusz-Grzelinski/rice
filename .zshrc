@@ -24,6 +24,11 @@ alias ez="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
 alias eb="vim ~/.bashrc"
 alias sb="source ~/.bashrc"
+alias svim="sudo vim"
+alias stop="systemctl stop"
+alias status="systemctl status"
+alias status="systemctl status"
+alias start="systemctl start"
 
 eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
 alias a='fasd -a'        # any
@@ -46,7 +51,9 @@ unsetopt extendedglob
 bindkey -e
 # bash style comment
 bindkey '\e#' pound-insert
-# setopt interactivecomments
+setopt interactivecomments
+# allow to trunk file with >
+setopt clobber
 
 # bindkey '\e.' insert-last-word
 # End of lines configured by zsh-newuser-install
