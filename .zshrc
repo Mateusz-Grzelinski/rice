@@ -11,10 +11,7 @@ if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
 fi
 
-#plugins with antigen
-# antigen bundle srijanshetty/zsh-pip-completion
-# antigen bundle zsh-users/zsh-completions
-# antigen use zsh-pip-completion
+export EDITOR="vim"
 
 #
 # User configuration sourced by interactive shells
@@ -68,3 +65,9 @@ export RPROMPT
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+
+# define shortcusts (widgets first)
+
+bindkey -s "" "fuck\n"
+bindkey -s "" "clear\n"

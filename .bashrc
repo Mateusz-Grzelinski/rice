@@ -64,6 +64,6 @@ eval $(thefuck --alias)
 
 
 bind '"\C-f":"fuck\n"'
-
+bind '"":"clear\n"'
 # get your <ctrl>s and <ctrl>q back too normal(meaning they do nothing)
 stty -ixon
