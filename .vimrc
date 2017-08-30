@@ -45,8 +45,9 @@ let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 1
 let g:jedi#show_call_signatures = 2     " fun arguments in command line
 
-
 " syntastic settings
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+" nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -79,7 +80,6 @@ set path+=**
 " tmux color enable
 set t_Co=256
 
-
 " windows manipulation inside vim
 " turn of that ** shortcut which overrides mine <C-j>
 " it is used in latex for jumping on placeholders
@@ -101,12 +101,10 @@ nnoremap <silent> <C-o> :TmuxNavigatePrevious<cr>
 " au FocusGained * :redraw!
 " au FocusLost * :wa
 
-
 " syntastic default settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 
 set nocompatible   " Disable vi-compatibility
 set laststatus=2   " Always show the statusline

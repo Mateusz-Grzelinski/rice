@@ -11,33 +11,15 @@ if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
 fi
 
-export EDITOR="vim"
-
 #
 # User configuration sourced by interactive shells
 #
-alias la="ls -ahF"
-alias ez="vim ~/.zshrc"
-alias sz="source ~/.zshrc"
-alias eb="vim ~/.bashrc"
-alias sb="source ~/.bashrc"
-alias svim="sudo vim -u /home/mat/.vimrc"
-alias stop="systemctl stop"
-alias status="systemctl status"
-alias status="systemctl status"
-alias start="systemctl start"
 
 eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
-alias a='fasd -a'        # any
-alias s='fasd -si'       # show / search / select
-alias d='fasd -d'        # directory
-alias f='fasd -f'        # file
-alias sd='fasd -sid'     # interactive directory selection
-alias sf='fasd -sif'     # interactive file selection
-alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-alias zz='fasd_cd -d -i' # cd with interactive selection
-
+source .aliases 
 eval $(thefuck --alias)
+
+
 # plugins=(zsh-completions zsh-pip-completion)
 
 # HISTFILE=~/.zhistfile
@@ -67,7 +49,10 @@ compinit
 # End of lines added by compinstall
 
 
-# define shortcusts (widgets first)
+# define shortcuts (widgets first)
 
 bindkey -s "" "fuck\n"
 bindkey -s "" "clear\n"
+
+# bring back delete key
+bindkey "\e[3~" delete-char
