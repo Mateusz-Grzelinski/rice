@@ -1,5 +1,11 @@
 
 
+#edit command on the fly in vim
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^X^e' edit-command-line
+
+
 bindkey -s "" "fuck\n"
 bindkey -s "" "clear\n"
 
@@ -11,7 +17,10 @@ bindkey "\e[3~" delete-char
 	# Custom cd
     # when going up run ls, when down (..) oly pwd
 	function my_cd() {
-        if [ "$1" = ".." ]; 
+        if [ -z "$1" ]; 
+        then 
+            cd
+        elif [ "$1" = ".." ]; 
         then 
             cd ..; 
             pwd;
