@@ -10,3 +10,8 @@ Workflow is not smooth yet.
 
 NOT TESTED!!
 PROBABLY NOT WORKING!!
+
+Edit:
+
+Recently a lot has changed.
+Major clean and installlation script comming soon.
