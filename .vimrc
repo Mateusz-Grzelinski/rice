@@ -54,7 +54,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " airline bar plugin, fix git symbol
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
+let g:airline_symbols_ascii = 1
 let g:cb_no_default_brackets = 1
 
 " Trigger configuration. Do not use <tab> if you use

@@ -37,7 +37,7 @@ colors() {
 
 eval "$(fasd --init auto posix-alias bash-ccomp-install)"
 
-source .aliases 
+source ~/.dotfiles/.aliases 
 
 eval $(thefuck --alias)
 

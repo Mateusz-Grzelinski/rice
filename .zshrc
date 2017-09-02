@@ -16,7 +16,7 @@ fi
 #
 
 eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
-source .aliases 
+source ~/.dotfiles/.aliases 
 eval $(thefuck --alias)
 
 
@@ -39,8 +39,8 @@ setopt clobber
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/mat/.zshrc'
 
-RPROMPT="%n"
-export RPROMPT
+# RPROMPT="%n"
+# export RPROMPT
 
 # completion
 # fpatch=(/home/mat/.antigen/bundles/srijanshetty/zsh-pip-completion $fpath)
@@ -56,3 +56,5 @@ bindkey -s "" "clear\n"
 
 # bring back delete key
 bindkey "\e[3~" delete-char
+
+source ~/.dotfiles/prompt_zsh.sh

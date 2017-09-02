@@ -12,7 +12,7 @@
 # The second line of modules may depend on options set by modules in the first
 # line. These dependencies are noted on the respective module's README.md.
 zmodules=(directory environment git git-info history input utility meta custom \
-          syntax-highlighting history-substring-search prompt completion)
+          syntax-highlighting history-substring-search completion) #prompt
 
 
 ###################
@@ -24,7 +24,8 @@ zmodules=(directory environment git git-info history input utility meta custom \
 #
 
 # Set your desired prompt here
-zprompt_theme='eriner'
+# Using custom prompt ## zmodule 'prompt' is dicabled!!!
+# zprompt_theme='eriner'
 
 #
 # Completion
@@ -59,7 +60,7 @@ ztermtitle='%n@%m:%~'
 
 # Uncomment to enable double-dot expansion.
 # This appends '../' to your input for each '.' you type after an initial '..'
-zdouble_dot_expand='true'
+# zdouble_dot_expand='true'
 
 #
 # Syntax-Highlighting
