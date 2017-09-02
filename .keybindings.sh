@@ -1,9 +1,9 @@
 
 
 #edit command on the fly in vim
-autoload edit-command-line
-zle -N edit-command-line
-bindkey '^X^e' edit-command-line
+# autoload edit-command-line
+# zle -N edit-command-line
+# bindkey '^X^e' edit-command-line
 
 
 bindkey -s "" "fuck\n"
@@ -26,7 +26,8 @@ bindkey "\e[3~" delete-char
             pwd;
 	    else
             cd $1;
-            ls | head -n 30 | ls;
+            ls --color=always --format=vertical | head -n 5 ;
+            echo "And more..."
         fi
     }
     bindkey -s "" "cd ..\n"
@@ -75,7 +76,7 @@ bindkey "\e[3~" delete-char
 		zle accept-line
 	}
 	zle -N edit_and_run
-	bindkey "^v" edit_and_run
+	bindkey "" edit_and_run
 
 # LS
 	function ctrl_l() {

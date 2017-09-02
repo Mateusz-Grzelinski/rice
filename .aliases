@@ -23,7 +23,8 @@ alias stop="systemctl stop"
 alias status="systemctl status"
 alias start="systemctl start"
 
-alias findr="find ! -readable -prune -o"
+# don't show not readable files while searching
+alias findr="find ! -readable -prune -o" 
 alias blender="optirun ~/Pulpit/blender-2.78/blender"
 
 alias a='fasd -a'        # any
