@@ -3,6 +3,7 @@ export EDITOR="vim"
 
 alias la="ls -ahF"
 alias ll="ls -lh" 
+alias cd="my_cd" #function defined in ./.keybindings.sh
 
 alias ez="vim ~/.zshrc"
 alias eb="vim ~/.bashrc"

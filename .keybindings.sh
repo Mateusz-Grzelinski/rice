@@ -9,19 +9,30 @@ bindkey "\e[3~" delete-char
 
 # cd
 	# Custom cd
-	my_cd() {
-		cd $1;
-		ls | head -n 30 | ls;
-	}
-alias cd="my_cd"
+    # when going up run ls, when down (..) oly pwd
+	function my_cd() {
+        if [ "$1" = ".." ]; 
+        then 
+            cd ..; 
+            pwd;
+	    else
+            cd $1;
+            ls | head -n 30 | ls;
+        fi
+    }
+    bindkey -s "" "cd ..\n"
+    # zle -N my_cd
+    # bindkey "" "my_cd .."
+
+# alias cd="my_cd"
 
 # up
-	function up_widget() {
-		BUFFER="cd .."
-		zle accept-line
-	}
-	zle -N up_widget
-	bindkey "" up_widget
+	# function up_widget() {
+	#     BUFFER="cd .."
+	#     zle accept-line
+	# }
+	# zle -N up_widget
+	# bindkey "" up_widget
 
 # git
 	# function git_prepare() {

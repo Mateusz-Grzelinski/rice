@@ -25,7 +25,7 @@ compinit
 eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
 eval $(thefuck --alias)
 
+source ~/.dotfiles/.keybindings.sh
 source ~/.dotfiles/.aliases 
 source ~/.dotfiles/prompt_zsh.sh
-source ~/.dotfiles/.keybindings.sh
 
