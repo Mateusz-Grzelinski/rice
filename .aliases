@@ -7,11 +7,15 @@ alias ll="ls -lh"
 alias ez="vim ~/.zshrc"
 alias eb="vim ~/.bashrc"
 alias et="vim ~/.tmux.conf"
+alias ea="vim ~/.dotfiles/.aliases"
+alias ezimrc="vim ~/.dotfiles/.zimrc"
+alias cdvim="cd ~/.vim/bundle"
 alias sz="source ~/.zshrc"
 alias sb="source ~/.bashrc"
 alias st="source ~/.tmux.conf"
+alias sa="source ~/.dotfiles/.aliases"
 
-alias svim="sudo vim -u /home/mat/.vimrc"
+alias svim="sudo vim"
 
 alias stop="systemctl stop"
 alias status="systemctl status"
@@ -28,3 +32,10 @@ alias sd='fasd -sid'     # interactive directory selection
 alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
+
+alias sshwin="ssh -p 2222 mat@192.168.0.11"
+alias esshd="svim /etc/ssh/sshd_config"
+alias essh="svim /etc/ssh/ssh_config"
+
+alias "c=xclip"
+alias "v=xclip -o"
