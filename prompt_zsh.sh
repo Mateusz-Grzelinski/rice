@@ -8,7 +8,7 @@ setopt PROMPT_SUBST
 
 set_prompt() {
 
-    RPROMPT="%n"
+    RPROMPT="%n@%m"
 	# [
 	PS1="%{$fg[white]%}[%{$reset_color%}"
 

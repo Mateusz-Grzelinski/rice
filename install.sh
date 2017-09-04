@@ -44,3 +44,8 @@ done
 
 # # git
 # ln -s ${BASEDIR}/gitconfig ~/.gitconfig
+
+# installation of fasd in ubuntu:
+sudo add-apt-repository ppa:aacebedo/fasd
+sudo apt-get update
+sudo apt-get install fasd
