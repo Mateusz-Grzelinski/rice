@@ -3,7 +3,7 @@ export EDITOR="vim"
 
 alias la="ls -ahF"
 alias ll="ls -lh" 
-alias cd="my_cd" #function defined in ./.keybindings.sh
+# alias cd="my_cd" #function defined in ./.keybindings.sh
 
 alias ez="vim ~/.zshrc"
 alias eb="vim ~/.bashrc"
@@ -17,7 +17,7 @@ alias sb="source ~/.bashrc"
 alias st="source ~/.tmux.conf"
 alias sa="source ~/.dotfiles/.aliases"
 
-alias svim="sudo vim"
+alias svim="sudo -e vim"
 
 alias stop="systemctl stop"
 alias status="systemctl status"
@@ -42,3 +42,5 @@ alias essh="svim /etc/ssh/ssh_config"
 
 alias "c=xclip"
 alias "v=xclip -o"
+
+alias externalip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print $4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
