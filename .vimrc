@@ -1,11 +1,80 @@
 
-execute pathogen#infect()
+
+" Start declaring the encoding of this very file
+scriptencoding utf-8
+set encoding=utf-8
+
+call plug#begin('~/.vim/bundle')
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+" Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-surround'
+
+Plug 'Align', { 'on': 'Align'  }
+" Plug 'camelcasemotion'
+" Plug 'godlygeek/csapprox'
+" Plug 'hallison/vim-markdown'
+" Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle'  }
+" Plug 'python.vim--Vasiliev', { 'for' : 'python'  }
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+" Plug 'ShowMarks', { 'on' : 'ShowMarksToggle'  }
+" Plug 'TaskList.vim', { 'on' : 'TaskList'  }
+Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-abolish'
+" Plug 'matchit.zip'
+" Plug 'vim-creole'
+" Plug 'toggle_words.vim', { 'on' : 'ToggleWord'  }
+" Plug 'mileszs/ack.vim', { 'on' : 'Ack'  }
+" Plug 'bufexplorer.zip', { 'on' : ['BufExplorer', 'BufExplorerHorizontalSplit', 'BufExplorerVerticalSplit' ]  }
+" Plug 'sjl/gundo.vim', { 'on': 'GundoToggle'  }
+" Plug 'vcscommand.vim'
+" Plug 'OmniCppComplete'
+" Plug 'SwapHeader'
+" Plug 'DoxygenToolkit.vim'
+Plug 'scrooloose/syntastic'
+" Plug 'jceb/vim-orgmode', { 'for' : 'org'  }
+" Plug 'helino/vim-json', { 'for' : 'json'  }
+Plug 'davidhalter/jedi-vim'
+" Plug 'tpope/vim-sleuth'
+" Plug 'sjl/splice.vim'
+" Plug 'luochen1990/rainbow'
+" Plug 'Shougo/unite.vim'
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'LanguageTool'
+Plug 'airblade/vim-gitgutter'
+" Plug 'junegunn/fzf'
+" Plug 'jmcantrell/vim-virtualenv'
+" Plug 'Better-CSS-Syntax-for-Vim', { 'for' : ['css', 'html']  }
+" Plug 'techlivezheng/vim-plugin-minibufexpl'
+" Plug 'derekwyatt/vim-fswitch'     " Switch between .h and .cpp files
+" Plug 'embear/vim-foldsearch'      " Search, and fold all lines without matches
+" Plug 'chrisbra/vim-diff-enhanced' " Apply a different slow diff algorithm to vimdiff
+" Plug 'confluencewiki.vim'         " Syntax for Confluence wiki style (jira)
+" Plug 'ekalinin/Dockerfile.vim'    " Syntax for Dockerfiles
+" Plug 'asciidoc/vim-asciidoc'      " Syntax for ASCII doc
+" Plug 'khorser/vim-qfnotes'        " Take notes per line, visible in que quick fix window
+" Plug 'mustache/vim-mustache-handlebars' " Mustache templates syntax and abbreviations
+
+"" Colorschemes
+Plug 'tomasr/molokai'
+Plug 'Mustang2'
+Plug 'DarkOcean.vim'
+Plug 'obxhdx/vim-github-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'asu1dark.vim'
+Plug 'Colorzone'
+Plug 'lightcolors'
+Plug 'print_bw.zip'
+Plug 'morhetz/gruvbox'
+Plug 'flazz/vim-colorschemes'
+
+
 
 syntax on
 filetype plugin indent on 
 colorscheme badwolf
 
-" crucial for me
 let mapleader = ","
 inoremap <c-s> <ESC>:w<CR> i
 nnoremap <Leader>a :q!<CR>
