@@ -23,11 +23,10 @@ compinit
 # End of lines added by compinstall
 
 eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
-eval $(thefuck --alias)
 
 
 
-source ~/.dotfiles/.keybindings.sh
-source ~/.dotfiles/.aliases 
+source ~/.dotfiles/keybindings.sh
+source ~/.dotfiles/aliases.sh
 source ~/.dotfiles/prompt_zsh.sh
 

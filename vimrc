@@ -1,78 +1,68 @@
-
-
 " Start declaring the encoding of this very file
 scriptencoding utf-8
-set encoding=utf-8
 
-call plug#begin('~/.vim/bundle')
-Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
-" Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-surround'
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-Plug 'Align', { 'on': 'Align'  }
-" Plug 'camelcasemotion'
-" Plug 'godlygeek/csapprox'
-" Plug 'hallison/vim-markdown'
-" Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle'  }
-" Plug 'python.vim--Vasiliev', { 'for' : 'python'  }
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-" Plug 'ShowMarks', { 'on' : 'ShowMarksToggle'  }
-" Plug 'TaskList.vim', { 'on' : 'TaskList'  }
-Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-abolish'
-" Plug 'matchit.zip'
-" Plug 'vim-creole'
-" Plug 'toggle_words.vim', { 'on' : 'ToggleWord'  }
-" Plug 'mileszs/ack.vim', { 'on' : 'Ack'  }
-" Plug 'bufexplorer.zip', { 'on' : ['BufExplorer', 'BufExplorerHorizontalSplit', 'BufExplorerVerticalSplit' ]  }
-" Plug 'sjl/gundo.vim', { 'on': 'GundoToggle'  }
-" Plug 'vcscommand.vim'
-" Plug 'OmniCppComplete'
-" Plug 'SwapHeader'
-" Plug 'DoxygenToolkit.vim'
-Plug 'scrooloose/syntastic'
-" Plug 'jceb/vim-orgmode', { 'for' : 'org'  }
-" Plug 'helino/vim-json', { 'for' : 'json'  }
-Plug 'davidhalter/jedi-vim'
-" Plug 'tpope/vim-sleuth'
-" Plug 'sjl/splice.vim'
-" Plug 'luochen1990/rainbow'
-" Plug 'Shougo/unite.vim'
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'LanguageTool'
-Plug 'airblade/vim-gitgutter'
-" Plug 'junegunn/fzf'
-" Plug 'jmcantrell/vim-virtualenv'
-" Plug 'Better-CSS-Syntax-for-Vim', { 'for' : ['css', 'html']  }
-" Plug 'techlivezheng/vim-plugin-minibufexpl'
-" Plug 'derekwyatt/vim-fswitch'     " Switch between .h and .cpp files
-" Plug 'embear/vim-foldsearch'      " Search, and fold all lines without matches
-" Plug 'chrisbra/vim-diff-enhanced' " Apply a different slow diff algorithm to vimdiff
-" Plug 'confluencewiki.vim'         " Syntax for Confluence wiki style (jira)
-" Plug 'ekalinin/Dockerfile.vim'    " Syntax for Dockerfiles
-" Plug 'asciidoc/vim-asciidoc'      " Syntax for ASCII doc
-" Plug 'khorser/vim-qfnotes'        " Take notes per line, visible in que quick fix window
-" Plug 'mustache/vim-mustache-handlebars' " Mustache templates syntax and abbreviations
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-"" Colorschemes
-Plug 'tomasr/molokai'
-Plug 'Mustang2'
-Plug 'DarkOcean.vim'
-Plug 'obxhdx/vim-github-theme'
-Plug 'altercation/vim-colors-solarized'
-Plug 'asu1dark.vim'
-Plug 'Colorzone'
-Plug 'lightcolors'
-Plug 'print_bw.zip'
-Plug 'morhetz/gruvbox'
-Plug 'flazz/vim-colorschemes'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'sjl/badwolf'
 
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'Shougo/neocomplete'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'vim-airline/vim-airline'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 syntax on
-filetype plugin indent on 
 colorscheme badwolf
 
 let mapleader = ","
@@ -80,6 +70,7 @@ inoremap <c-s> <ESC>:w<CR> i
 nnoremap <Leader>a :q!<CR>
 nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e! $MYVIMRC<CR>
+nnoremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
 nnoremap <c-s> :w<CR>
 noremap <C-n> :NERDTreeToggle<CR>
 nnoremap <F1> :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
@@ -95,6 +86,12 @@ nnoremap <F10> :!./a.out<CR>
 inoremap <Leader>p print
 inoremap <Leader>s self
 " nnoremap Leader>s iself
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " noecomplete
 let g:acp_enableAtStartup = 0
@@ -151,7 +148,7 @@ set path+=**
 set t_Co=256
 
 " windows manipulation inside vim
-" turn of that ** shortcut which overrides mine <C-j>
+" turn of that shortcut which overrides mine <C-j>
 " it is used in latex for jumping on placeholders
 nnoremap <C-S-`> <Plug>IMAP_JumpForward
 " nnoremap <C-j> <C-W>j

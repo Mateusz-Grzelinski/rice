@@ -6,9 +6,6 @@
 # bindkey '^X^e' edit-command-line
 
 
-bindkey -s "" "fuck\n"
-bindkey -s "" "clear\n"
-
 # bring back delete key
 bindkey "\e[3~" delete-char
 

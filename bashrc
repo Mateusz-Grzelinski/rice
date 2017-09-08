@@ -37,11 +37,7 @@ colors() {
 
 eval "$(fasd --init auto posix-alias bash-ccomp-install)"
 
-source ~/.dotfiles/.aliases 
+source ~/.dotfiles/aliases.sh 
 
-eval $(thefuck --alias)
-
-bind '"\C-f":"fuck\n"'
-bind '"":"clear\n"'
 # get your <ctrl>s and <ctrl>q back too normal(meaning they do nothing)
 stty -ixon
