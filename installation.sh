@@ -9,6 +9,34 @@ echo -e "This script will configure dotfiles for: \n\
 
 echo
 
+# backup current dotfiles
+while read -p "Make backup of dotfiles (zshrc, bashrc, vimrc, .vim folder, tmux.conf) (y/n)? " yn;
+do
+    case $yn in
+        t|T|tak|Tak|y|Y|yes|Yes) 
+            for file in ".zshrc" ".bashrc" ".vimrc" ".vim" ".tmux.conf" ".zimrc";
+            do
+                BACKUP_DIR="$HOME/.backup-dotfiles"
+                mkdir -p $BACKUP_DIR &&  test -f "$HOME/$file" && mv "$HOME/$file" "$BACKUP_DIR/$file"
+            done
+            echo "Backup done. Path: $BACKUP_DIR "
+            break;;
+        n|N|nie|Nie|no|No) 
+            echo "Dotfiles will be overriten";
+            break;;
+    esac
+done
+
+# linking configuration
+
+for file in "zshrc" "bashrc" "vimrc" "tmux.conf" "zimrc";
+do
+    echo "source ~/.dotfiles/$file" > $HOME/.$file;
+done
+
+# ----------------------------------
+# installing programs
+#-----------------------------------
 # check for exsistens of program fasd
 if [ command -v fasd &> /dev/null  ];
 then
@@ -34,33 +62,9 @@ fi
 
 echo
 
-# backup current dotfiles
-while read -p "Make backup of dotfiles (zshrc, bashrc, vimrc, .vim folder, tmux.conf) (y/n)? " yn;
-do
-    case $yn in
-        t|T|tak|Tak|y|Y|yes|Yes) 
-            for file in ".zshrc" ".bashrc" ".vimrc" ".vim" ".tmux.conf" ".zimrc";
-            do
-                BACKUP_DIR="$HOME/.backup-dotfiles"
-                mkdir -p $BACKUP_DIR &&  test -f "$HOME/$file" && mv "$HOME/$file" "$BACKUP_DIR/$file"
-            done
-            echo "Backup done. Path: $BACKUP_DIR "
-            break;;
-        n|N|nie|Nie|no|No) 
-            echo "Dotfiles will be overriten";
-            break;;
-    esac
-done
-
-# linking configuration
-
-for file in "zshrc" "bashrc" "vimrc" "tmux.conf" "zimrc";
-do
-    echo "source ~/.dotfiles/$file" > $HOME/.$file;
-    echo "Installing vundle and other vim plugins..."
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
-    vim +PluginInstall +qall
-done
+echo "Installing vundle and other vim plugins..."
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &>/dev/null
+vim +PluginInstall +qall
 
 echo "Installing zsh"
 if [ command -v zsh &> /dev/null  ];
@@ -68,8 +72,10 @@ then
     sudo pacman -S zsh
     echo "Installing zim..."
 else
-    echo "zsh and zim is installed"
+    echo "zsh is installed"
 fi
 
-zsh git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
-chsh -s =zsh
+echo "Instaling zim..."
+git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim >/dev/null
+echo "Change default shell to zsh"
+chsh -s /bin/zsh
