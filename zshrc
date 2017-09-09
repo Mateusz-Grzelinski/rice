@@ -29,4 +29,4 @@ eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
 source ~/.dotfiles/keybindings.sh
 source ~/.dotfiles/aliases.sh
 source ~/.dotfiles/prompt_zsh.sh
-
+bindkey -s 'l' 'clear\n' 

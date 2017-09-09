@@ -66,11 +66,11 @@ syntax on
 colorscheme badwolf
 
 let mapleader = ","
-inoremap <c-s> <ESC>:w<CR> i
 nnoremap <Leader>a :q!<CR>
 nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e! $MYVIMRC<CR>
 nnoremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
+inoremap <c-s> <ESC>:w<CR>
 nnoremap <c-s> :w<CR>
 noremap <C-n> :NERDTreeToggle<CR>
 nnoremap <F1> :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
@@ -99,9 +99,6 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#enable_auto_close_preview = 1
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
-" clighter8
-let g:clighter8_autostart = 0
 
 " vim-jedi settings 
 let g:jedi#auto_initialization = 1
@@ -150,7 +147,7 @@ set t_Co=256
 " windows manipulation inside vim
 " turn of that shortcut which overrides mine <C-j>
 " it is used in latex for jumping on placeholders
-nnoremap <C-S-`> <Plug>IMAP_JumpForward
+"nnoremap <C-S-`> <Plug>IMAP_JumpForward
 " nnoremap <C-j> <C-W>j
 " noremap <C-k> <C-W>k
 " noremap <C-h> <C-W>h
