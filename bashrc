@@ -37,6 +37,9 @@ colors() {
 
 eval "$(fasd --init auto posix-alias bash-ccomp-install)"
 
+# edit commands before entering them (!!)
+shopt -s histverify
+
 source ~/.dotfiles/aliases.sh 
 
 # get your <ctrl>s and <ctrl>q back too normal(meaning they do nothing)

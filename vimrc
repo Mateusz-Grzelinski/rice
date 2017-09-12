@@ -88,6 +88,7 @@ inoremap <Leader>s self
 " nnoremap Leader>s iself
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
+vmap <Enter> <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)

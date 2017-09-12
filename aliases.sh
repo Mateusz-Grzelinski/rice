@@ -10,7 +10,7 @@ alias eb="vim ~/.dotfiles/bashrc"
 alias et="vim ~/.dotfiles/tmux.conf"
 alias ea="vim ~/.dotfiles/aliases.sh"
 alias ek="vim ~/.dotfiles/keybindings.sh"
-alias ezimrc="vim ~/.dotfiles/zimrc"
+alias ezz="vim ~/.dotfiles/zimrc"
 alias cdvim="cd ~/.dotfiles/.vim/bundle"
 alias sz="source ~/.zshrc"
 alias sb="source ~/.bashrc"
@@ -43,3 +43,5 @@ alias c="xclip"
 alias v="xclip -o"
 
 alias externalip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print $4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
+
+
