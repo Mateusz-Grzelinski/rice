@@ -14,7 +14,7 @@ while read -p "Make backup of dotfiles (zshrc, bashrc, vimrc, .vim folder, tmux.
 do
     case $yn in
         t|T|tak|Tak|y|Y|yes|Yes) 
-            for file in ".zshrc" ".bashrc" ".vimrc" ".vim" ".tmux.conf" ".zimrc";
+            for file in ".zshrc" ".bashrc" ".vimrc" ".vim" ".tmux.conf" ".zimrc" ".zim";
             do
                 BACKUP_DIR="$HOME/.backup-dotfiles"
                 mkdir -p $BACKUP_DIR &&  test -f "$HOME/$file" && mv "$HOME/$file" "$BACKUP_DIR/$file"
@@ -27,8 +27,13 @@ do
     esac
 done
 
-# linking configuration
+# removing dotfiles
+for file in ".zshrc" ".bashrc" ".vimrc" ".vim" ".tmux.conf" ".zimrc" ".zim";
+do
+    rm -rf $HOME/$file;
+done
 
+# linking configuration
 for file in "zshrc" "bashrc" "vimrc" "tmux.conf" "zimrc";
 do
     echo "source ~/.dotfiles/$file" > $HOME/.$file;
@@ -37,6 +42,20 @@ done
 # ----------------------------------
 # installing programs
 #-----------------------------------
+# PROGRAMS_TO_INSTALL=""
+# if [ command -v fasd &> /dev/null  ];
+# then 
+#     PROGRAMS_TO_INSTALL+="fasd "
+# elif [ command -v zsh &> /dev/null ];
+# then
+#     PROGRAMS_TO_INSTALL+="zsh ";
+# elif [ command -v  borg &> /dev/null ];
+#     PROGRAMS_TO_INSTALL+="borg "
+#     # Autocomplition for borg
+#     # https://github.com/mrkmg/borgbackup-zsh-completion
+# then
+
+
 # check for exsistens of program fasd
 if [ command -v fasd &> /dev/null  ];
 then
