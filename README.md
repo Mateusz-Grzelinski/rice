@@ -1,17 +1,17 @@
-# .dotfiles
-dotfiles for bash, zshell, vim, tmux...
+# My dotfiles
+dotfiles for bash, zshell (with zim), vim, tmux...
 
 My personal collection of configuration files for Linux (Manjaro xfce)
-Work in (never ending) progress. 
 
-My focus is on vim with Python plus some scripting.
+I focus my workflow on vim, tmux and ssh.
 
-Workflow is not smooth yet. 
+This is alpha stage of dotfiles. It works but you might experience some troubles.
 
-NOT TESTED!!
-PROBABLY NOT WORKING!!
+# Installation
 
-Edit:
+Clone this repo to your home directory. You can yse installation script but it is pretty messy, it needs rewritting. But it works.
+You should read the installation script berofe launching.
+Installation script prompts to buckup your dotfiles.
+Dotfiles use the folowing programs: zsh, fasd, vim, tmux.
+zim will be installed to ~/.zim folder.
 
-Recently a lot has changed.
-Major clean and installlation script comming soon.
