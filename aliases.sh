@@ -17,6 +17,8 @@ alias sb="source ~/.bashrc"
 alias st="source ~/.tmux.conf"
 alias sa="source ~/.dotfiles/.aliases"
 
+alias ag="alias | grep -i "
+
 alias svim="sudo -e vim"
 
 alias stop="systemctl stop"
