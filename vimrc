@@ -1,5 +1,6 @@
 " Start declaring the encoding of this very file
 scriptencoding utf-8
+let termencoding="utf-8"
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -12,45 +13,29 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
+Plugin 'drmikehenry/vim-fixkey'
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'hdima/python-syntax'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'sjl/badwolf'
-
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'Shougo/neocomplete'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-airline/vim-airline'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+Plugin 'kien/ctrlp.vim'
+" color themes
+Plugin 'sjl/badwolf'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'morhetz/gruvbox'
+call vundle#end()            
+filetype plugin indent on   
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just
@@ -72,25 +57,31 @@ nnoremap <Leader>v :e! $MYVIMRC<CR>
 nnoremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
 inoremap <c-s> <ESC>:w<CR>
 nnoremap <c-s> :w<CR>
-noremap <C-n> :NERDTreeToggle<CR>
-nnoremap <F1> :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
+nnoremap <Leader>t :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
 nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
-inoremap <F5> <ESC>:w<CR>:!python %<CR>
+" inoremap <F5> <ESC>:w<CR>:!python %<CR>
 nnoremap <F6> :w<CR>:!./%<CR>
 nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
 nnoremap <F10> :!./a.out<CR>
 
+
 " my semi snipets
 " nnoremap <Leader>p iprint
-inoremap <Leader>p print
-inoremap <Leader>s self
+" inoremap <Leader>p print
+" inoremap <Leader>s self
 " nnoremap Leader>s iself
+
+" NERDTree
+let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '\.swo', '\.swn', '\.swm', '[a-zA-Z]*egg[a-zA-Z]*', '[a-zA-Z]*cache[a-zA-Z]*']
+let NERDTreeShowHidden=1
+let g:NERDTreeWinPos="left"
+let g:NERDTreeDirArrows=0
+noremap <Leader>n :NERDTreeToggle<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 vmap <Enter> <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
@@ -116,7 +107,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_mri_args = "--config=$HOME/.jshintrc"
+let g:syntastic_python_checkers = [ 'pylint', 'flake8', 'pep8', 'pyflakes', 'python']
+let g:syntastic_yaml_checkers = ['jsyaml']
+let g:syntastic_html_tidy_exec = 'tidy5'
 " airline bar plugin, fix git symbol
 " let g:airline_powerline_fonts = 1
 let g:airline_symbols_ascii = 1
@@ -139,11 +134,15 @@ let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" fuzzy file finding with :find *[name]
-set path+=**
+" Multi cursor plugin
+let g:multi_cursor_use_default_mapping=0
+" Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_start_word_key='g<C-n>'
 
-" tmux color enable
-set t_Co=256
 
 " windows manipulation inside vim
 " turn of that shortcut which overrides mine <C-j>
@@ -171,11 +170,15 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-set nocompatible   " Disable vi-compatibility
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
+" set laststatus=2   " Always show the statusline
 
-" normalne backspace i myszka
+" fuzzy file finding with :find *[name]
+set path+=**
+
+" tmux color enable
+set t_Co=256
+
+" normal behaviour of mouse and backspace
 set backspace=2
 set mouse=a
 
