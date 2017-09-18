@@ -1,4 +1,4 @@
-
+export TERM="xterm-256color" 
 export EDITOR="vim"
 
 alias la="ls -ahF"
@@ -11,7 +11,7 @@ alias et="vim ~/.dotfiles/tmux.conf"
 alias ea="vim ~/.dotfiles/aliases.sh"
 alias ek="vim ~/.dotfiles/keybindings.sh"
 alias ezz="vim ~/.dotfiles/zimrc"
-alias cdvim="cd ~/.dotfiles/.vim/bundle"
+alias cdvim="cd ~/.vim/bundle"
 alias sz="source ~/.zshrc"
 alias sb="source ~/.bashrc"
 alias st="source ~/.tmux.conf"
