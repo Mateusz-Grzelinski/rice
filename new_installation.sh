@@ -39,9 +39,10 @@ unique_backup_dir() {
 
 yes_do_backup() {
   unique_backup_dir
+  mkdir -p $backup_dir 
   for file in ${dotfiles[@]};
   do
-    mkdir -p $backup_dir && cp -pr "$HOME/$file" "$backup_dir/$file"
+    cp -pr "$HOME/$file" "$backup_dir/$file"
   done
   echo "Backup done. Path: $backup_dir "
 }
