@@ -11,6 +11,16 @@ setopt interactivecomments
 # clear screen with alt-l
 bindkey -s 'l' 'clear\n' 
 
+# fast loop
+    function fast_loop() {
+        while [ true ];
+        do
+            $BUFFER
+            sleep 0.4
+        done
+    }
+    zle -N fast_loop
+bindkey "" fast_loop
 
 # up
     function up_widget() {
@@ -46,7 +56,7 @@ bindkey "" up_widget
 # Sudo
 	function add_sudo() {
 		BUFFER="sudo "$BUFFER
-		zle end-of-line
+        zle end-of-line
 	}
 	zle -N add_sudo
     bindkey "^s" add_sudo
