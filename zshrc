@@ -8,10 +8,6 @@ fi
 
 unsetopt autocd
 unsetopt extendedglob
-bindkey -e
-# bash style comment
-bindkey '\e#' pound-insert
-setopt interactivecomments
 # allow to trunk file with >
 setopt clobber
 
@@ -24,8 +20,6 @@ compinit
 
 eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
 
-
 source ~/.dotfiles/keybindings.sh
 source ~/.dotfiles/aliases.sh
 source ~/.dotfiles/prompt_zsh.sh
-bindkey -s 'l' 'clear\n' 
