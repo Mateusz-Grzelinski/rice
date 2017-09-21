@@ -9,24 +9,36 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'drmikehenry/vim-fixkey'
+" Completions & snips
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
 Plugin 'junegunn/vim-easy-align'
+" Syntax & languages
+Plugin 'Shougo/neocomplete'
+Plugin 'python-mode/python-mode'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Shougo/echodoc.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'janko-m/vim-test'
+" Plugin 'christoomey/vim-tmux-runner'
+Plugin 'tpope/vim-dispatch'
+" Utils
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'python-mode/python-mode'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-fugitive'
+Plugin 'majutsushi/tagbar'
+Plugin 'Raimondi/delimitMate'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'Shougo/neocomplete'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
-" color themes
+Plugin 'drmikehenry/vim-fixkey'
+" Color themes
 Plugin 'sjl/badwolf'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'morhetz/gruvbox'
@@ -41,7 +53,9 @@ filetype plugin indent on
 " auto-approve removal
 
 syntax on
-colorscheme badwolf
+colorscheme lucius
+set background=dark
+let g:airline_theme='lucius'
 
 let mapleader = ","
 nnoremap <Leader>a :q!<CR>
@@ -73,35 +87,59 @@ vmap <Enter> <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+" Echhodoc
+set noshowmode
+" set cmdheight=2
+let g:echodoc_enable_at_startup = 1
+
 " Noecomplete
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#enable_auto_close_preview = 1
+let g:neocomplete#enable_camel_case = 1
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " python mode plugin
 let g:pymode_python = 'python3'
 let g:pymode_run_bind = "<Leader>e"
-" let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
+let g:pymode_lint = 0
+let g:pymode_doc = 0
+let g:pymode_rope = 1
 
 " vim-jedi settings 
 let g:jedi#auto_initialization = 1
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled =1
-let g:jedi#popup_select_first = 0
-let g:jedi#popup_on_dot = 1
-let g:jedi#show_call_signatures = 1
-autocmd FileType python setlocal completeopt-=preview
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-e>"
-let g:jedi#rename_command = "<leader>r"
+let g:jedi#auto_vim_configuration = 1
+" let g:jedi#completions_enabled =1
+" let g:jedi#popup_select_first = 0
+" let g:jedi#popup_on_dot = 1
+" let g:jedi#auto_close_doc = 1
+let g:jedi#show_call_signatures = 2
+" autocmd FileType python setlocal completeopt-=preview
+" let g:jedi#goto_command = "<leader>d"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#completions_command = "<C-e>"
+" let g:jedi#rename_command = "<tab>"
+autocmd FileType python setlocal omnifunc=jedi#completions "pythoncomplete#Complete
+set completeopt=longest,menu,menuone
+
+" vim-test
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tT :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tg :TestVisit<CR>
+" make test commands execute using dispatch.vim
+let test#strategy = "dispatch"
+let test#python#runner = 'pytest'
+" Runners available are 'pytest', 'nose', 'nose2', 'djangotest', 'djangonose' and Python's built-in 'unittest'
 
 " airline bar plugin, fix git symbol
 " let g:airline_powerline_fonts = 1
@@ -129,7 +167,6 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 let g:multi_cursor_start_word_key='g<C-n>'
 
-
 " tmux seamless navigation with vim-tmux-navigator
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_save_on_switch=1
@@ -146,7 +183,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 " nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_mri_args = "--config=$HOME/.jshintrc"
@@ -157,6 +194,25 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+
+" From https://github.com/rafi/vim-config/
+
+" Tabs
+nnoremap <silent> g0 :<C-u>tabfirst<CR>
+nnoremap <silent> g$ :<C-u>tablast<CR>
+nnoremap <silent> gr :<C-u>tabprevious<CR>
+nnoremap <silent> <A-j> :<C-U>tabnext<CR>
+nnoremap <silent> <A-k> :<C-U>tabprevious<CR>
+nnoremap <silent> <C-Tab> :<C-U>tabnext<CR>
+nnoremap <silent> <C-S-Tab> :<C-U>tabprevious<CR>
+" Uses g:lasttab set on TabLeave in MyAutoCmd
+let g:lasttab = 1
+nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
+
+" Remove spaces at the end of lines
+nnoremap <silent> <Leader><Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+
+
 " fuzzy file finding with :find *[name]
 set path+=**
 set t_Co=256
@@ -166,9 +222,7 @@ set history=700
 set undolevels=700
 set shortmess=at
 set autoindent
-" save file when using :last, :next, etc.
-" set autowrite
-" read file when changed externally
+set clipboard=unnamed
 set autoread
 set colorcolumn=80
 set expandtab
@@ -188,12 +242,3 @@ set showmatch
 set so=5
 " commands like M,H,L... go to first column
 set sol
-
-" custom colors for vim-diff
-" hi DiffAdd ctermfg=none ctermbg=234
-" hi DiffChange term=bold ctermbg=238
-" hi DiffDelete ctermfg=124 ctermbg=52
-" hi DiffText cterm=bold ctermbg=240
-" hi GitGutterChange ctermfg=202 ctermbg=none cterm=bold
-" hi GitGutterDelete ctermfg=125 ctermbg=none cterm=bold
-" hi GitGutterAdd ctermfg=190 ctermbg=none cterm=bold
