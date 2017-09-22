@@ -11,22 +11,23 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " Completions & snips
 Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips'
-Plugin 'junegunn/vim-easy-align'
-" Syntax & languages
 Plugin 'Shougo/neocomplete'
+Plugin 'SirVer/ultisnips'
+" Syntax & languages
+" Plugin 'w0rp/ale'
 Plugin 'python-mode/python-mode'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'Shougo/echodoc.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'janko-m/vim-test'
-" Plugin 'christoomey/vim-tmux-runner'
 Plugin 'tpope/vim-dispatch'
 " Utils
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'junegunn/vim-easy-align'
 Plugin 'majutsushi/tagbar'
 Plugin 'Raimondi/delimitMate'
 Plugin 'airblade/vim-gitgutter'
@@ -68,24 +69,46 @@ nnoremap <c-s> :w<CR>
 nnoremap <Leader>t :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
 nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
-" inoremap <F5> <ESC>:w<CR>:!python %<CR>
 nnoremap <F6> :w<CR>:!./%<CR>
 nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
 nnoremap <F10> :!./a.out<CR>
 vnoremap < <gv
 vnoremap > >gv
+map <C-w>+ <C-W>10+
+map <C-w>- <C-W>10-
+
+nnoremap <S-F1> :mksession! ./.vim_session <CR>   
+nnoremap <S-F2> :source ./.vim_session <CR>      
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '\.swo', '\.swn', '\.swm', '[a-zA-Z]*egg[a-zA-Z]*', '[a-zA-Z]*cache[a-zA-Z]*']
 let NERDTreeShowHidden=1
 let g:NERDTreeWinPos="left"
 let g:NERDTreeDirArrows=0
-noremap <Leader>n :NERDTreeToggle<CR>
+noremap <F1> :NERDTreeToggle<CR>
+
+" NERDTree-git
+let g:NERDTreeShowGitStatus = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 vmap <Enter> <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" Tagbar 
+nmap <F2> :TagbarToggle<CR>
+
+" Indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 " Echhodoc
 set noshowmode
@@ -114,21 +137,10 @@ let g:pymode_rope = 1
 " vim-jedi settings 
 let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 1
-" let g:jedi#completions_enabled =1
-" let g:jedi#popup_select_first = 0
-" let g:jedi#popup_on_dot = 1
-" let g:jedi#auto_close_doc = 1
 let g:jedi#show_call_signatures = 2
-" autocmd FileType python setlocal completeopt-=preview
-" let g:jedi#goto_command = "<leader>d"
-" let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#goto_definitions_command = ""
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" let g:jedi#completions_command = "<C-e>"
-" let g:jedi#rename_command = "<tab>"
+autocmd FileType python setlocal completeopt-=preview
 autocmd FileType python setlocal omnifunc=jedi#completions "pythoncomplete#Complete
-set completeopt=longest,menu,menuone
+" set completeopt=longest,menu,menuone
 
 " vim-test
 nmap <silent> <leader>tt :TestNearest<CR>
@@ -151,13 +163,6 @@ let g:UltiSnipsExpandTrigger="<c-o>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
 
 " Multi cursor plugin
 let g:multi_cursor_use_default_mapping=0
@@ -212,6 +217,9 @@ nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
 " Remove spaces at the end of lines
 nnoremap <silent> <Leader><Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
+" Easymotion
+map f <Plug>(easymotion-f)
+map F <Plug>(easymotion-F)
 
 " fuzzy file finding with :find *[name]
 set path+=**
@@ -226,9 +234,9 @@ set clipboard=unnamed
 set autoread
 set colorcolumn=80
 set expandtab
-set tabstop=4
 set ignorecase
 set smartcase
+set incsearch
 set nobackup
 set noswapfile
 set nowritebackup
@@ -238,6 +246,7 @@ set relativenumber
 set shiftround
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 set showmatch
 set so=5
 " commands like M,H,L... go to first column
