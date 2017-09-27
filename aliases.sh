@@ -15,6 +15,7 @@ alias ezz="vim ~/.zimrc"
 alias ea="vim ~/.dotfiles/aliases.sh"
 alias ek="vim ~/.dotfiles/keybindings.sh"
 alias cdvim="cd ~/.vim/bundle"
+alias cdnvim="cd ~/.config/nvim/"
 alias vims="vim -S .vim_session"
 alias sz="source ~/.zshrc"
 alias sb="source ~/.bashrc"
@@ -23,7 +24,7 @@ alias sa="source ~/.dotfiles/.aliases"
 
 alias ag="alias | grep -i "
 
-alias svim="sudo -e vim"
+alias svim="sudo -e"
 
 alias stop="systemctl stop"
 alias status="systemctl status"
