@@ -1,3 +1,4 @@
+
 scriptencoding utf-8
 let termencoding="utf-8"
 
@@ -5,48 +6,63 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+" set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
+" Plug 'VundleVim/Vundle.vim'
 " Completions & snips
-Plugin 'honza/vim-snippets'
-Plugin 'Shougo/neocomplete'
-Plugin 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Shougo/neocomplete'
+Plug 'apalmer1377/factorus'
+Plug 'SirVer/ultisnips'
 " Syntax & languages
-Plugin 'w0rp/ale'
-Plugin 'python-mode/python-mode'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'Shougo/echodoc.vim'
-Plugin 'Shougo/context_filetype.vim'
+Plug 'brooth/far.vim'
+Plug 'w0rp/ale'
+Plug 'python-mode/python-mode'
+" Plug 'tmhedberg/SimpylFold'
+Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/context_filetype.vim'
+Plug 'itchyny/vim-cursorword'
 " Plugin 'scrooloose/syntastic'
-Plugin 'janko-m/vim-test'
-Plugin 'tpope/vim-dispatch'
+Plug 'janko-m/vim-test'
+Plug 'tpope/vim-dispatch'
 " Utils
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'majutsushi/tagbar'
-" Plugin 'Raimondi/delimitMate'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'sjl/gundo.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/dsf.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-user'
+Plug 'tpope/vim-sleuth'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 't9md/vim-choosewin'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'junegunn/vim-easy-align'
+Plug 'majutsushi/tagbar'
+Plug 'jiangmiao/auto-pairs'
+Plug 'airblade/vim-gitgutter'
+Plug 'sjl/gundo.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'itchyny/calendar.vim'
 " Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'kien/ctrlp.vim'
+Plug 'tpope/vim-surround'
+Plug 'kana/vim-niceblock'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'wellle/tmux-complete.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'kien/ctrlp.vim'
 " tacahiroy/ctrlp-funky " ctrlp like function definition matching
-Plugin 'drmikehenry/vim-fixkey'
+Plug 'drmikehenry/vim-fixkey'
 " Color themes
-Plugin 'sjl/badwolf'
-Plugin 'jonathanfilip/vim-lucius'
-Plugin 'morhetz/gruvbox'
-call vundle#end()            
+Plug 'sjl/badwolf'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'morhetz/gruvbox'
+call plug#end()            
 filetype plugin indent on   
 
 syntax on
@@ -72,6 +88,7 @@ nnoremap <F6> :w<CR>:!./%<CR>
 nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
 nnoremap <F10> :!./a.out<CR>
 nnoremap <Leader>er :Errors <CR>
+nmap -- <Plug>(choosewin)
 map <C-w>+ <C-W>10+
 map <C-w>- <C-W>10-
 map <C-w>< <C-W>5<
@@ -79,6 +96,10 @@ map <C-w>> <C-W>5>
 
 nnoremap <S-F1> :mksession! ./.vim_session <CR>   
 nnoremap <S-F2> :source ./.vim_session <CR>      
+
+" Sideways
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
 
 " From https://github.com/rafi/vim-config/
 " Tabs
@@ -162,6 +183,7 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " python mode plugin
+let g:pymode = 0
 let g:pymode_python = 'python3'
 let g:pymode_run_bind = "<Leader>e"
 let g:pymode_rope_completion = 0
@@ -169,6 +191,7 @@ let g:pymode_lint = 1
 let g:pymode_lint_cwindow = 0
 let g:pymode_doc = 0
 let g:pymode_rope = 1
+let g:pymode_rope_lookup_project = 0
 
 " vim-jedi settings 
 let g:jedi#auto_initialization = 1
@@ -193,7 +216,7 @@ nmap <silent> <leader>tg :TestVisit<CR>
 let test#strategy = "dispatch"
 let test#python#runner = 'pytest'
 " Runners available are 'pytest', 'nose', 'nose2', 'djangotest', 'djangonose' and Python's built-in 'unittest'
-let g:test#python#pytest#options = "-v"
+let g:test#python#pytest#options = "-vs "
 
 " airline bar plugin, fix git symbol
 " let g:airline_powerline_fonts = 1
