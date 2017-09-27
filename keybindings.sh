@@ -15,12 +15,12 @@ bindkey -s 'l' 'clear\n'
     function fast_loop() {
         while [ true ];
         do
-            $BUFFER
+            eval $BUFFER
             sleep 0.4
         done
     }
     zle -N fast_loop
-bindkey "" fast_loop
+bindkey "" fast_loop
 
 # up
     function up_widget() {
