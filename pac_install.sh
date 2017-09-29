@@ -2,11 +2,15 @@
 
 echo "Read the script!! Many programs will be installed"
 read
+<<<<<<< HEAD
 sudo pacman -S --noconfirm blender vim cmake handbrake darktable yaourt virtualbox linux49-virtualbox-host-modules linux49-virtualbox-guest-modules fasd texmaker unison grsync xclip dropbox borg pyqt5 kodi hplip neovim bleachbit codeblocks shellcheck clang ctags ipython powerline python-ipdb python-pytest python-nose python-numpy gitg
+=======
+sudo pacman -S --noconfirm blender vim cmake handbrake darktable yaourt virtualbox linux49-virtualbox-host-modules linux49-virtualbox-guest-modules fasd texmaker unison grsync xclip borg python-pyqt5 kodi hplip neovim bleachbit codeblocks shellcheck clang ctags ipython powerline python-ipdb python-pytest python-nose python-numpy gitg
+>>>>>>> Fixed pacman installation
 
-sudo pip3 install jedi rope nose numpy vim-vint proselint 
+pip3 install --user jedi rope vim-vint proselint 
 
-yaourt -S --noconfirm spotify clion pycharm-professional unity-editor chrome cling-git
+yaourt -S --noconfirm dropbox spotify clion pycharm-professional unity-editor chrome cling-git
 
 # fix power fonts
 # wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
