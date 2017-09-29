@@ -16,17 +16,22 @@ Plug 'apalmer1377/factorus'
 Plug 'SirVer/ultisnips'
 " Syntax & languages
 Plug 'brooth/far.vim'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'python-mode/python-mode'
+" Plug 'integralist/vim-mypy'
 " Plug 'tmhedberg/SimpylFold'
 Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'itchyny/vim-cursorword'
-" Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
+Plug 'skywind3000/asyncrun.vim'
 " Utils
+Plug 'romainl/vim-cool'
+Plug 'terryma/vim-expand-region'
+Plug 'vim-scripts/ZoomWin'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/dsf.vim'
@@ -70,7 +75,7 @@ colorscheme lucius
 set background=dark
 let g:airline_theme='lucius'
 
-let mapleader = ","
+let mapleader = " "
 nnoremap <Leader>a :q!<CR>
 nnoremap <Leader>A :qa!<CR>
 nnoremap <Leader>s :source $MYVIMRC<CR>
@@ -78,8 +83,10 @@ nnoremap <Leader>v :e! $MYVIMRC<CR>
 nnoremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
 nnoremap <Leader>pl :PymodeLintAuto<CR>
 nnoremap <Leader>t :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
+nnoremap <Leader>e :Dispatch python %
 " nnoremap <CR> o<ESC>
-nnoremap o o<ESC> " alt-o
+nnoremap o A<CR><ESC>
+
 inoremap <c-s> <ESC>:w<CR>
 nnoremap <c-s> :w<CR>
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
@@ -118,8 +125,8 @@ nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
 nnoremap <silent> <Leader><Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
     
 " Easymotion
-map f <Plug>(easymotion-f)
-map F <Plug>(easymotion-F)
+" map f <Plug>(easymotion-f)
+" map F <Plug>(easymotion-F)
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '\.swo', '\.swn', '\.swm', '[a-zA-Z]*egg[a-zA-Z]*', '[a-zA-Z]*cache[a-zA-Z]*']
@@ -149,6 +156,10 @@ set undolevels=700
 set undofile
 
 " Ale
+let g:ale_enabled = 0
+let g:ale_emit_conflict_warnings = 0
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sh_shell_default_shell='bash'
 " Map movement through errors without wrapping.
@@ -183,15 +194,18 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " python mode plugin
-let g:pymode = 0
+let g:pymode = 1
 let g:pymode_python = 'python3'
-let g:pymode_run_bind = "<Leader>e"
-let g:pymode_rope_completion = 0
-let g:pymode_lint = 1
+let g:pymode_run = 0
+let g:pymode_lint = 1 " left on for autolint
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_checkers = []
 let g:pymode_lint_cwindow = 0
 let g:pymode_doc = 0
-let g:pymode_rope = 1
+let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
 let g:pymode_rope_lookup_project = 0
+let g:pymode_syntax = 0
 
 " vim-jedi settings 
 let g:jedi#auto_initialization = 1
@@ -251,24 +265,25 @@ nnoremap <silent> <C-o> :TmuxNavigatePrevious<cr>
 " au FocusGained * :redraw!
 " au FocusLost * :wa
 
-" " syntastic settings
-" let g:syntastic_mode_map = { 'mode': 'active', 
-"             \ 'passive_filetypes': ["python"] }
-" " nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 2
-" " let g:syntastic_check_on_open = 1
-" " let g:syntastic_check_on_wq = 1
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_mri_args = "--config=$HOME/.jshintrc"
-" let g:syntastic_python_checkers = [ 'pylint', 'flake8', 'pep8', 'pyflakes', 'python']
-" let g:syntastic_yaml_checkers = ['jsyaml']
-" let g:syntastic_html_tidy_exec = 'tidy5'
-" set statusline+=%#warningmsg#
+" syntastic settings
+let g:syntastic_mode_map = { 'mode': 'active' }
+			" \ 'passive_filetypes': ["python"] }
+" nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_mri_args = "--config=$HOME/.jshintrc"
+let g:syntastic_python_checkers = [ 'pylint', 'flake8', 'pep8', 'pyflakes', 'python', 'mypy']
+let g:syntastic_yaml_checkers = ['jsyaml']
+let g:syntastic_html_tidy_exec = 'tidy5'
+set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 
 " fuzzy file finding with :find *[name]
+set cursorline
 set path+=**
 set t_Co=256
 set backspace=2

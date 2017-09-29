@@ -22,6 +22,8 @@ alias sb="source ~/.bashrc"
 alias st="source ~/.tmux.conf"
 alias sa="source ~/.dotfiles/.aliases"
 
+alias pypath='export PYTHONPATH=/usr/lib/root:`pwd`'
+
 alias ag="alias | grep -i "
 
 alias svim="sudo -e"
