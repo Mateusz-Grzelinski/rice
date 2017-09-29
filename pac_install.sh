@@ -2,11 +2,7 @@
 
 echo "Read the script!! Many programs will be installed"
 read
-<<<<<<< HEAD
-sudo pacman -S --noconfirm blender vim cmake handbrake darktable yaourt virtualbox linux49-virtualbox-host-modules linux49-virtualbox-guest-modules fasd texmaker unison grsync xclip dropbox borg pyqt5 kodi hplip neovim bleachbit codeblocks shellcheck clang ctags ipython powerline python-ipdb python-pytest python-nose python-numpy gitg
-=======
-sudo pacman -S --noconfirm blender vim cmake handbrake darktable yaourt virtualbox linux49-virtualbox-host-modules linux49-virtualbox-guest-modules fasd texmaker unison grsync xclip borg python-pyqt5 kodi hplip neovim bleachbit codeblocks shellcheck clang ctags ipython powerline python-ipdb python-pytest python-nose python-numpy gitg
->>>>>>> Fixed pacman installation
+sudo pacman -S --noconfirm blender vim cmake handbrake darktable yaourt virtualbox linux49-virtualbox-host-modules linux49-virtualbox-guest-modules fasd texmaker unison grsync xclip borg python-pyqt5 kodi hplip neovim python-neovim bleachbit codeblocks shellcheck clang ctags ipython powerline python-ipdb python-pytest python-nose python-numpy gitg wget tmux
 
 pip3 install --user jedi rope vim-vint proselint 
 

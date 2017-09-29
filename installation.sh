@@ -86,6 +86,8 @@ echo "Installing vundle and other vim plugins..."
 # vim +PluginInstall +qall
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir ~/.config
+git clone git://github.com/rafi/vim-config.git ~/.config/nvim
 
 echo "Installing zsh"
 if [ command -v zsh &> /dev/null  ];
