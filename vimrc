@@ -2,6 +2,13 @@
 scriptencoding utf-8
 let termencoding="utf-8"
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -15,7 +22,9 @@ Plug 'Shougo/neocomplete'
 Plug 'apalmer1377/factorus'
 Plug 'SirVer/ultisnips'
 " Syntax & languages
+Plug 'ervandew/supertab'
 Plug 'brooth/far.vim'
+Plug 'artur-shaik/vim-javacomplete2'
 " Plug 'w0rp/ale'
 Plug 'python-mode/python-mode'
 " Plug 'integralist/vim-mypy'
@@ -80,20 +89,20 @@ nnoremap <Leader>a :q!<CR>
 nnoremap <Leader>A :qa!<CR>
 nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e! $MYVIMRC<CR>
-nnoremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
+noremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
 nnoremap <Leader>pl :PymodeLintAuto<CR>
 nnoremap <Leader>t :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
-nnoremap <Leader>e :Dispatch python %
+nnoremap <Leader>e :Dispatch !python3 %
 " nnoremap <CR> o<ESC>
 nnoremap o A<CR><ESC>
 
 inoremap <c-s> <ESC>:w<CR>
 nnoremap <c-s> :w<CR>
-nnoremap <F4> :set hlsearch! hlsearch?<CR>
+nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
 nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
 nnoremap <F6> :w<CR>:!./%<CR>
-nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
-nnoremap <F10> :!./a.out<CR>
+autocmd FileType c,cpp nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
+autocmd FileType c,cpp nnoremap <F10> :!./a.out<CR>
 nnoremap <Leader>er :Errors <CR>
 nmap -- <Plug>(choosewin)
 map <C-w>+ <C-W>10+
@@ -101,8 +110,8 @@ map <C-w>- <C-W>10-
 map <C-w>< <C-W>5<
 map <C-w>> <C-W>5>
 
-nnoremap <S-F1> :mksession! ./.vim_session <CR>   
-nnoremap <S-F2> :source ./.vim_session <CR>      
+nnoremap <F3> :mksession! .vim_session<CR>   
+nnoremap <F4> :source .vim_session<CR>      
 
 " Sideways
 nnoremap <c-h> :SidewaysLeft<cr>
@@ -193,6 +202,21 @@ let g:neocomplete#enable_camel_case = 1
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
+" javacomplete2 
+" augroup javasetting
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    " F9/F10 compile/run default file.
+    " F11/F12 compile/run alternate file.
+    map <F9> :AsyncRun javac **/*.java
+    map <F10> :Dispatch java $(echo % \| cut -d. -f 1)
+
+    " map <F9> :set makeprg=javac\ %<CR>:make<CR>
+    " map <F10> :Dispatch !echo %\|awk -F. '{print $1}'\|xargs java
+    " map <F11> :set makeprg=javac\ #<CR>:make<CR>
+    " map <F12> :!echo #\|awk -F. '{print $1}'\|xargs java<CR>
+" augroup END
+
+" augroup pythonsettings
 " python mode plugin
 let g:pymode = 1
 let g:pymode_python = 'python3'
@@ -213,12 +237,13 @@ let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 1
 let g:jedi#show_call_signatures = 2
 if has('python3')
-    let g:jedi#force_py_version = 3
+let g:jedi#force_py_version = 3
 endif
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python setlocal completeopt+=noinsert
-autocmd FileType python setlocal omnifunc=jedi#completions "pythoncomplete#Complete
+setlocal completeopt-=preview
+setlocal completeopt+=noinsert
+setlocal omnifunc=jedi#completions "pythoncomplete#Complete
 " set completeopt=longest,menu,menuone,noinsert,noselect
+" augroup END
 
 " vim-test
 nmap <silent> <leader>tt :TestNearest<CR>
