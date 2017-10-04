@@ -11,12 +11,18 @@ setopt interactivecomments
 # clear screen with alt-l
 bindkey -s 'l' 'clear\n' 
 
+# fast watch 
+    function fast_watch() {
+        watch -n 0.5 "$BUFFER"
+    }
+    zle -N fast_watch
+bindkey "zz" fast_watch
 # fast loop
     function fast_loop() {
         while [ true ];
         do
             eval $BUFFER
-            sleep 0.4
+            sleep 0.5
         done
     }
     zle -N fast_loop
