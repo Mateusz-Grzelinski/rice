@@ -106,12 +106,12 @@ zim_install() {
 }
 
 install_programs() {
-  programs_to_install=("fasd" "zsh")
-  for program in ${programs_to_install[@]};
-  do
-    install_not_distro_dependent ${program}
-  done 
-  ask_loop "Install vim plugins? " vim_install
+  # programs_to_install=("fasd" "zsh")
+  # for program in ${programs_to_install[@]};
+  # do
+  #   install_not_distro_dependent ${program}
+  # done
+  # ask_loop "Install vim plugins? " vim_install
   ask_loop "Install zim? " zim_install
 }
 
