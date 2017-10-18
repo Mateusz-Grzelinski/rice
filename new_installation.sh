@@ -83,19 +83,19 @@ install_arch_only() {
   # echo "Programs can not be install. Do it manually"
 }
 
-zim_install() {
-  rm -rf $HOME/.zim
-  git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim >/dev/null
+# zim_install() {
+#   rm -rf $HOME/.zim
+#   git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim >/dev/null
 
-  setopt EXTENDED_GLOB
-  for template_file ( ${ZDOTDIR:-${HOME}}/.zim/templates/* ); do
-    user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
-    touch ${user_file}
-    ( print -rn "$(<${template_file})$(<${user_file})" >! ${user_file} ) 2>/dev/null
-  done
+#   setopt EXTENDED_GLOB
+#   for template_file ( ${ZDOTDIR:-${HOME}}/.zim/templates/* ); do
+#     user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
+#     touch ${user_file}
+#     ( print -rn "$(<${template_file})$(<${user_file})" >! ${user_file} ) 2>/dev/null
+#   done
 
-  source ${ZDOTDIR:-${HOME}}/.zlogin
-}
+#   source ${ZDOTDIR:-${HOME}}/.zlogin
+# }
 
 install_programs() {
   programs_to_install=("fasd" "zsh")
@@ -124,7 +124,7 @@ main() {
   link_dotfiles
   extras
 
-  echo "
+  echo '
   git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim >/dev/null
 
   setopt EXTENDED_GLOB
@@ -135,7 +135,7 @@ main() {
   done
 
   source ${ZDOTDIR:-${HOME}}/.zlogin
-  "
+  '
 }
 
 main "$@"
