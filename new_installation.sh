@@ -68,7 +68,7 @@ link_dotfiles() {
   done
 }
 
-install_not_distro_dependent() {
+install_arch_only() {
   if [ command -v "$1" &> /dev/null  ]; then
     echo "$1 is installed."
     return 0
@@ -78,46 +78,34 @@ install_not_distro_dependent() {
   if lsb_release -id | grep -i 'manjaro\|arch' &> /dev/null;
   then 
     sudo pacman -S "$1"  
-  elif  lsb_release -id | grep -i 'ubuntu';
-  then
-    if [ "$1" -eq "fasd" ]; then
-      echo "fasd is not in ubuntu repos. Adding it manually:"
-      sudo add-apt-repository ppa:aacebedo/fasd
-      sudo apt-get update
-    fi
-    sudo apt install "$1" 
   fi
   # sudo yum install "$@" 2> /dev/null 
   # echo "Programs can not be install. Do it manually"
-}
-
-
-vim_install() {
-  rm -rf $HOME/.vim
-  git clone https://github.com/VundleVim/Vundle.vim.git \
-    ~/.vim/bundle/Vundle.vim &>/dev/null
-  vim +PluginInstall +qall 2> /dev/null
 }
 
 zim_install() {
   rm -rf $HOME/.zim
   git clone --recursive https://github.com/Eriner/zim.git \
     ${ZDOTDIR:-${HOME}}/.zim >/dev/null
+
+  setopt EXTENDED_GLOB
+  for template_file ( ${ZDOTDIR:-${HOME}}/.zim/templates/* ); do
+    user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
+    touch ${user_file}
+    ( print -rn "$(<${template_file})$(<${user_file})" >! ${user_file} ) 2>/dev/null
+  done
+
+  source ${ZDOTDIR:-${HOME}}/.zlogin
 }
 
 install_programs() {
   programs_to_install=("fasd" "zsh")
-  for program in ${programs_to_install[@]};
-  do
-    install_not_distro_dependent ${program}
-  done 
-  ask_loop "Install vim plugins? " vim_install
+  sudo pacman -S programs_to_install[*]
   ask_loop "Install zim? " zim_install
 }
 
-extras() {
-  if [ $SHELL != "/bin/zsh" ]; then 
-    ask_loop "Change shell? " "chsh -s /bin/zsh"
+extras() { if [ $SHELL != "/bin/zsh" ]; then 
+    ask_loop "Change default shell? " "chsh -s /bin/zsh"
   fi
 }
 
@@ -130,9 +118,11 @@ main() {
   vim with plugins, \n\
   tmux (compatible with vim). "
 
+  echo "RUN IN ZSH"
+
   make_backup
-  link_dotfiles
   install_programs
+  link_dotfiles
   extras
 }
 

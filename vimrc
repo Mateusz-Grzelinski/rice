@@ -8,45 +8,54 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
-" Plug 'VundleVim/Vundle.vim'
 " Completions & snips
 Plug 'honza/vim-snippets'
 Plug 'Shougo/neocomplete'
 Plug 'apalmer1377/factorus'
 Plug 'SirVer/ultisnips'
+Plug 'ap/vim-css-color'
+Plug 'othree/csscomplete.vim'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'othree/html5.vim'
 " Syntax & languages
-Plug 'ervandew/supertab'
-Plug 'brooth/far.vim'
+Plug 'vim-latex/vim-latex'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'heavenshell/vim-jsdoc'
+" Plug 'moll/vim-node'
+Plug 'elzr/vim-json'
+Plug 'plasticboy/vim-markdown'
+Plug 'rhysd/vim-gfm-syntax'
+" Plug 'brooth/far.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'artur-shaik/vim-javacomplete2'
-" Plug 'w0rp/ale'
 Plug 'python-mode/python-mode'
-" Plug 'integralist/vim-mypy'
 " Plug 'tmhedberg/SimpylFold'
 Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/context_filetype.vim'
+" Plug 'Shougo/context_filetype.vim'
 Plug 'itchyny/vim-cursorword'
 Plug 'scrooloose/syntastic'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'mattn/emmet-vim'
+Plug 'StanAngeloff/php.vim'
 " Utils
+" Plug 'vim-scripts/restore_view.vim'
+Plug 'vim-scripts/mru.vim'
 Plug 'romainl/vim-cool'
-Plug 'terryma/vim-expand-region'
+" Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/ZoomWin'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/dsf.vim'
 Plug 'vim-scripts/matchit.zip'
-Plug 'kana/vim-textobj-function'
-Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-function'
+" Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-sleuth'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'scrooloose/nerdcommenter'
@@ -66,7 +75,7 @@ Plug 'itchyny/calendar.vim'
 Plug 'tpope/vim-surround'
 Plug 'kana/vim-niceblock'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'wellle/tmux-complete.vim'
+" Plug 'wellle/tmux-complete.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
@@ -76,42 +85,51 @@ Plug 'drmikehenry/vim-fixkey'
 Plug 'sjl/badwolf'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'morhetz/gruvbox'
-call plug#end()            
-filetype plugin indent on   
+Plug 'romainl/Apprentice'
+call plug#end()
+filetype plugin indent on
 
+" syntax colors and theme
 syntax on
-colorscheme lucius
+colorscheme apprentice
 set background=dark
 let g:airline_theme='lucius'
+
+" filetype on
 
 let mapleader = " "
 nnoremap <Leader>a :q!<CR>
 nnoremap <Leader>A :qa!<CR>
 nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e! $MYVIMRC<CR>
-noremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
+nnoremap <Leader>vv :e! ~/.dotfiles/vimrc<CR>
+nnoremap <Leader>c :Copen<CR>
 nnoremap <Leader>pl :PymodeLintAuto<CR>
-nnoremap <Leader>t :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR> 
+nnoremap <Leader>t :put =strftime('%a, %d %b %Y, %H:%M:%S')<CR>
 nnoremap <Leader>e :Dispatch !python3 %
+nnoremap <Leader>er :Errors <CR>
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
 " nnoremap <CR> o<ESC>
 nnoremap o A<CR><ESC>
 
 inoremap <c-s> <ESC>:w<CR>
 nnoremap <c-s> :w<CR>
-nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
-nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
-nnoremap <F6> :w<CR>:!./%<CR>
-autocmd FileType c,cpp nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
-autocmd FileType c,cpp nnoremap <F10> :!./a.out<CR>
-nnoremap <Leader>er :Errors <CR>
 nmap -- <Plug>(choosewin)
 map <C-w>+ <C-W>10+
 map <C-w>- <C-W>10-
 map <C-w>< <C-W>5<
 map <C-w>> <C-W>5>
+" nnoremap <CR> za
 
-nnoremap <F3> :mksession! .vim_session<CR>   
-nnoremap <F4> :source .vim_session<CR>      
+noremap <F1> :NERDTreeToggle<CR>
+nmap <F2> :TagbarToggle<CR>
+nnoremap <F3> :mksession! .vim_session<CR>
+nnoremap <F4> :source .vim_session<CR>
+nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
+nnoremap <F6> :w<CR>:!./%<CR>
+autocmd FileType c,cpp nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
+autocmd FileType c,cpp nnoremap <F10> :!./a.out<CR>
 
 " Sideways
 nnoremap <c-h> :SidewaysLeft<cr>
@@ -131,21 +149,24 @@ let g:lasttab = 1
 nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
 
 " Remove spaces at the end of lines
-nnoremap <silent> <Leader><Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
-    
-" Easymotion
-" map f <Plug>(easymotion-f)
-" map F <Plug>(easymotion-F)
+nnoremap <silent> <Leader><CR> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+
+" Latex Suite
+imap <C-n> <Plug>IMAP_JumpForward
+nmap <C-n> <Plug>IMAP_JumpForward
+let g:Tex_DefaultTargetFormat="pdf"
+
+" css completion
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '\.swo', '\.swn', '\.swm', '[a-zA-Z]*egg[a-zA-Z]*', '[a-zA-Z]*cache[a-zA-Z]*']
 let NERDTreeShowHidden=1
 let g:NERDTreeWinPos="left"
 let g:NERDTreeDirArrows=0
-noremap <F1> :NERDTreeToggle<CR>
+
 " NERDTree-git
 let g:NERDTreeShowGitStatus = 1
-
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
@@ -164,64 +185,43 @@ set history=700
 set undolevels=700
 set undofile
 
-" Ale
-let g:ale_enabled = 0
-let g:ale_emit_conflict_warnings = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_sh_shell_default_shell='bash'
-" Map movement through errors without wrapping.
-nmap <silent> k <Plug>(ale_previous)
-nmap <silent> j <Plug>(ale_next)
-" OR map keys to use wrapping.
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" Tagbar 
-nmap <F2> :TagbarToggle<CR>
-
 " Echhodoc
 set noshowmode
 " set cmdheight=2
 let g:echodoc_enable_at_startup = 1
 
 " Indent guides
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Noecomplete
-let g:acp_enableAtStartup = 1
+let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#enable_auto_close_preview = 1
 let g:neocomplete#enable_camel_case = 1
-" inoremap <expr><C-g>     neocomplcache#undo_completion()
-" inoremap <expr><C-l>     neocomplcache#complete_common_string()
+" inoremap <expr><C-n> neocomplete#start_manual_complete()
+inoremap <expr><C-Space> neocomplete#undo_completion()
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
-" javacomplete2 
-" augroup javasetting
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    " F9/F10 compile/run default file.
-    " F11/F12 compile/run alternate file.
-    map <F9> :AsyncRun javac **/*.java
-    map <F10> :Dispatch java $(echo % \| cut -d. -f 1)
+" javacomplete2
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" F9/F10 compile/run default file.
+autocmd Filetype java set makeprg=javac\ %
+autocmd FileType java map <F9> :AsyncRun javac **/*.java
+autocmd FileType java  map <F10> :Dispatch java $(echo % \| cut -d. -f 1)
+set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+map <F9> :make<Return>:copen<Return>
+map <F10> :cprevious<Return>
+map <F11> :cnext<Return>
 
-    " map <F9> :set makeprg=javac\ %<CR>:make<CR>
-    " map <F10> :Dispatch !echo %\|awk -F. '{print $1}'\|xargs java
-    " map <F11> :set makeprg=javac\ #<CR>:make<CR>
-    " map <F12> :!echo #\|awk -F. '{print $1}'\|xargs java<CR>
-" augroup END
-
-" augroup pythonsettings
 " python mode plugin
 let g:pymode = 1
 let g:pymode_python = 'python3'
 let g:pymode_run = 0
-let g:pymode_lint = 1 " left on for autolint
+let g:pymode_lint = 1 " left only for autolint
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_checkers = []
 let g:pymode_lint_cwindow = 0
@@ -231,7 +231,7 @@ let g:pymode_rope_completion = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_syntax = 0
 
-" vim-jedi settings 
+" vim-jedi settings
 let g:jedi#auto_initialization = 1
 " let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 1
@@ -259,7 +259,7 @@ let g:test#python#pytest#options = "-vs "
 
 " airline bar plugin, fix git symbol
 " let g:airline_powerline_fonts = 1
-let g:airline_symbols_ascii = 1
+let g:airline_symbols_ascii = 0
 let g:cb_no_default_brackets = 1
 
 " Ultisnippets
@@ -267,8 +267,8 @@ let g:cb_no_default_brackets = 1
 let g:UltiSnipsExpandTrigger="<c-o>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-set rtp+=~/.dotfiles/my_snips
-let g:UltiSnipsSnippetsDir="~/.dotfiles/my_snips/UltiSnips"
+" set rtp+=~/.dotfiles/my_snips
+" let g:UltiSnipsSnippetsDir="~/.dotfiles/my_snips/UltiSnips"
 let g:UltiSnipsEditSplit="vertical"
 
 " Multi cursor plugin
@@ -307,6 +307,12 @@ set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 
+" save folds
+augroup remember_folds
+  autocmd BufWrite,VimLeave ?* silent! mkview
+  autocmd BufWinEnter ?* silent! loadview
+augroup END
+
 " fuzzy file finding with :find *[name]
 set cursorline
 set path+=**
@@ -329,7 +335,7 @@ set wildmenu
 set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.gif,*.ico,*.png,*.jpg
 set wildignore+=*.git,*.tmp
-set number 
+set number
 set relativenumber
 set shiftround
 set shiftwidth=4
