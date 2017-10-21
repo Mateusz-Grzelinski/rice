@@ -83,6 +83,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'drmikehenry/vim-fixkey'
 " Color themes
 Plug 'sjl/badwolf'
+Plug 'romainl/Apprentice'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'morhetz/gruvbox'
 call plug#end()            
