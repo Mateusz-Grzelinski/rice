@@ -4,6 +4,11 @@ bindkey -e
 bindkey "\e[3~" delete-char
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
+
+# for tmux 
+bindkey "" history-beginning-search-backward
+bindkey "" history-beginning-search-forward
+
 # bash style comment
 bindkey '\e#' pound-insert
 setopt interactivecomments
