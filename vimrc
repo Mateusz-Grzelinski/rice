@@ -3,9 +3,9 @@ scriptencoding utf-8
 let termencoding="utf-8"
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
@@ -50,9 +50,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-sleuth'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 't9md/vim-choosewin'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
@@ -62,7 +62,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sjl/gundo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/calendar.vim'
-" Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'kana/vim-niceblock'
 Plug 'christoomey/vim-tmux-navigator'
@@ -77,9 +77,7 @@ Plug 'sjl/badwolf'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'morhetz/gruvbox'
 call plug#end()            
-filetype plugin indent on   
 
-syntax on
 colorscheme lucius
 set background=dark
 let g:airline_theme='lucius'
@@ -132,7 +130,7 @@ nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
 
 " Remove spaces at the end of lines
 nnoremap <silent> <Leader><Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
-    
+
 " Easymotion
 " map f <Plug>(easymotion-f)
 " map F <Plug>(easymotion-F)
@@ -164,20 +162,6 @@ set history=700
 set undolevels=700
 set undofile
 
-" Ale
-let g:ale_enabled = 0
-let g:ale_emit_conflict_warnings = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_sh_shell_default_shell='bash'
-" Map movement through errors without wrapping.
-nmap <silent> k <Plug>(ale_previous)
-nmap <silent> j <Plug>(ale_next)
-" OR map keys to use wrapping.
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
 " Tagbar 
 nmap <F2> :TagbarToggle<CR>
 
@@ -204,16 +188,16 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " javacomplete2 
 " augroup javasetting
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    " F9/F10 compile/run default file.
-    " F11/F12 compile/run alternate file.
-    map <F9> :AsyncRun javac **/*.java
-    map <F10> :Dispatch java $(echo % \| cut -d. -f 1)
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" F9/F10 compile/run default file.
+" F11/F12 compile/run alternate file.
+map <F9> :AsyncRun javac **/*.java
+map <F10> :Dispatch java $(echo % \| cut -d. -f 1)
 
-    " map <F9> :set makeprg=javac\ %<CR>:make<CR>
-    " map <F10> :Dispatch !echo %\|awk -F. '{print $1}'\|xargs java
-    " map <F11> :set makeprg=javac\ #<CR>:make<CR>
-    " map <F12> :!echo #\|awk -F. '{print $1}'\|xargs java<CR>
+" map <F9> :set makeprg=javac\ %<CR>:make<CR>
+" map <F10> :Dispatch !echo %\|awk -F. '{print $1}'\|xargs java
+" map <F11> :set makeprg=javac\ #<CR>:make<CR>
+" map <F12> :!echo #\|awk -F. '{print $1}'\|xargs java<CR>
 " augroup END
 
 " augroup pythonsettings
@@ -237,7 +221,7 @@ let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 1
 let g:jedi#show_call_signatures = 2
 if has('python3')
-let g:jedi#force_py_version = 3
+    let g:jedi#force_py_version = 3
 endif
 setlocal completeopt-=preview
 setlocal completeopt+=noinsert
@@ -292,7 +276,7 @@ nnoremap <silent> <C-o> :TmuxNavigatePrevious<cr>
 
 " syntastic settings
 let g:syntastic_mode_map = { 'mode': 'active' }
-			" \ 'passive_filetypes': ["python"] }
+" \ 'passive_filetypes': ["python"] }
 " nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2
@@ -308,7 +292,9 @@ set statusline+=%#warningmsg#
 " set statusline+=%*
 
 " fuzzy file finding with :find *[name]
-set cursorline
+autocmd WinLeave * set nocursorline 
+autocmd WinEnter * set cursorline
+" set cursorline
 set path+=**
 set t_Co=256
 set backspace=2
