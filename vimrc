@@ -13,7 +13,6 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 " Completions & snips
-Plug 'honza/vim-snippets'
 Plug 'Shougo/neocomplete'
 Plug 'apalmer1377/factorus'
 Plug 'SirVer/ultisnips'
@@ -29,12 +28,16 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
 Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-gfm-syntax'
-" Plug 'brooth/far.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'python-mode/python-mode'
-" Plug 'tmhedberg/SimpylFold'
-Plug 'davidhalter/jedi-vim'
+Plug 'honza/vim-snippets'
+" Syntax & languages
+" Plug 'ervandew/supertab'
+Plug 'brooth/far.vim'
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+Plug 'python-mode/python-mode', { 'for': 'python' }
+Plug 'integralist/vim-mypy', { 'for': 'python' }
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'Shougo/echodoc.vim'
 " Plug 'Shougo/context_filetype.vim'
 Plug 'itchyny/vim-cursorword'
@@ -48,16 +51,16 @@ Plug 'StanAngeloff/php.vim'
 " Plug 'vim-scripts/restore_view.vim'
 Plug 'vim-scripts/mru.vim'
 Plug 'romainl/vim-cool'
-" Plug 'terryma/vim-expand-region'
-Plug 'vim-scripts/ZoomWin'
-Plug 'AndrewRadev/sideways.vim'
+Plug 'terryma/vim-expand-region'
+Plug 'vim-scripts/ZoomWin', { 'on': '<Plug>ZoomWin' }
+Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight'] }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/dsf.vim'
 Plug 'vim-scripts/matchit.zip'
 " Plug 'kana/vim-textobj-function'
 " Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-sleuth'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/vimproc.vim', { 'do' : 'make'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -65,7 +68,7 @@ Plug 't9md/vim-choosewin'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'sjl/gundo.vim'
@@ -86,10 +89,8 @@ Plug 'sjl/badwolf'
 Plug 'romainl/Apprentice'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'morhetz/gruvbox'
-call plug#end()            
-filetype plugin indent on   
+call plug#end()
 
-syntax on
 colorscheme apprentice
 set background=dark
 let g:airline_theme='lucius'
@@ -127,6 +128,8 @@ nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
 nnoremap <F6> :w<CR>:!./%<CR>
 autocmd FileType c,cpp nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
 autocmd FileType c,cpp nnoremap <F10> :!./a.out<CR>
+nnoremap <F3> :mksession! .vim_session<CR>
+nnoremap <F4> :source .vim_session<CR>
 
 " Sideways
 nnoremap <c-h> :SidewaysLeft<cr>
@@ -156,6 +159,10 @@ let g:Tex_DefaultTargetFormat="pdf"
 " css completion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
+" Sideways 
+nnoremap <M-h> :SidewaysLeft<CR>
+nnoremap <M-l> :SidewaysRight<CR>
+
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '\.swo', '\.swn', '\.swm', '[a-zA-Z]*egg[a-zA-Z]*', '[a-zA-Z]*cache[a-zA-Z]*']
 let NERDTreeShowHidden=1
@@ -181,6 +188,9 @@ set undodir=~/.vim/tmp/undo/
 set history=700
 set undolevels=700
 set undofile
+
+" Tagbar
+nmap <F2> :TagbarToggle<CR>
 
 " Echhodoc
 set noshowmode
@@ -311,7 +321,9 @@ augroup remember_folds
 augroup END
 
 " fuzzy file finding with :find *[name]
-set cursorline
+autocmd WinLeave * set nocursorline
+autocmd VimEnter,WinEnter * set cursorline
+" set cursorline
 set path+=**
 set t_Co=256
 set backspace=2
@@ -340,5 +352,4 @@ set softtabstop=4
 set tabstop=4
 set showmatch
 set so=5
-" commands like M,H,L... go to first column
 set sol
