@@ -96,6 +96,7 @@ set background=dark
 let g:airline_theme='lucius'
 
 let mapleader = " "
+let maplocalleader = ";"
 nnoremap <Leader>a :q!<CR>
 nnoremap <Leader>A :qa!<CR>
 nnoremap <Leader>s :source $MYVIMRC<CR>
@@ -126,8 +127,15 @@ nnoremap <F3> :mksession! .vim_session<CR>
 nnoremap <F4> :source .vim_session<CR>
 nnoremap <F5> :w<CR>:!clear<CR>:!python %<CR>
 nnoremap <F6> :w<CR>:!./%<CR>
-autocmd FileType c,cpp nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
-autocmd FileType c,cpp nnoremap <F10> :!./a.out<CR>
+augroup filetype_cpp
+    autocmd!
+    autocmd FileType c,cpp nnoremap <F9> :w<CR>:!g++ -Wall -pedantic -Wunused -Wextra %<CR>
+    autocmd FileType c,cpp nnoremap <F10> :!./a.out<CR>
+augroup END
+
+" Window-control prefix
+nnoremap  [Window]   <Nop>
+nmap      s [Window]
 nnoremap <F3> :mksession! .vim_session<CR>
 nnoremap <F4> :source .vim_session<CR>
 
@@ -148,6 +156,18 @@ nnoremap <silent> <C-S-Tab> :<C-U>tabprevious<CR>
 let g:lasttab = 1
 nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
 
+
+" Window-control prefix
+nnoremap  [Window]   <Nop>
+nmap      s [Window]
+nnoremap <silent> [Window]v  :<C-u>split<CR>
+nnoremap <silent> [Window]g  :<C-u>vsplit<CR>
+nnoremap <silent> [Window]t  :tabnew<CR>
+nnoremap <silent> [Window]o  :<C-u>only<CR>
+nnoremap <silent> [Window]b  :b#<CR>
+nnoremap <silent> [Window]c  :close<CR>
+nnoremap <silent> [Window]x  :<C-u>call <SID>BufferEmpty()<CR>
+
 " Remove spaces at the end of lines
 nnoremap <silent> <Leader><CR> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
@@ -157,7 +177,10 @@ nmap <C-n> <Plug>IMAP_JumpForward
 let g:Tex_DefaultTargetFormat="pdf"
 
 " css completion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+augroup filetype_css
+    autocmd!
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+augroup END
 
 " Sideways 
 nnoremap <M-h> :SidewaysLeft<CR>
@@ -214,11 +237,14 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " javacomplete2
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-" F9/F10 compile/run default file.
-autocmd Filetype java set makeprg=javac\ %
-autocmd FileType java map <F9> :AsyncRun javac **/*.java
-autocmd FileType java  map <F10> :Dispatch java $(echo % \| cut -d. -f 1)
+augroup filetype_java
+    autocmd!
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    " F9/F10 compile/run default file.
+    autocmd Filetype java set makeprg=javac\ %
+    autocmd FileType java map <F9> :AsyncRun javac **/*.java
+    autocmd FileType java  map <F10> :Dispatch java $(echo % \| cut -d. -f 1)
+augroup END
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 map <F9> :make<Return>:copen<Return>
 map <F10> :cprevious<Return>
@@ -310,14 +336,15 @@ let g:syntastic_javascript_mri_args = "--config=$HOME/.jshintrc"
 let g:syntastic_python_checkers = [ 'pylint', 'flake8', 'pep8', 'pyflakes', 'python', 'mypy']
 let g:syntastic_yaml_checkers = ['jsyaml']
 let g:syntastic_html_tidy_exec = 'tidy5'
-set statusline+=%#warningmsg#
+" set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 
 " save folds
 augroup remember_folds
-  autocmd BufWrite,VimLeave ?* silent! mkview
-  autocmd BufWinEnter ?* silent! loadview
+    autocmd!
+    autocmd BufWrite,VimLeave ?* silent! mkview
+    autocmd BufWinEnter ?* silent! loadview
 augroup END
 
 " fuzzy file finding with :find *[name]
