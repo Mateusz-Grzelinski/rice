@@ -15,6 +15,7 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 " Completions & snips
 Plug 'Shougo/neocomplete'
+Plug 'sbdchd/neoformat'
 Plug 'apalmer1377/factorus', {'for': ['java', 'c', 'cpp']} 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
