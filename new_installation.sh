@@ -109,7 +109,7 @@ extras() { if [ $SHELL != "/bin/zsh" ]; then
 }
 
 main() {
-  dotfiles=(".zshrc" ".bashrc" ".vimrc" ".vim" ".tmux.conf" ".zimrc" )
+  dotfiles=(".zshrc" ".bashrc" ".vimrc" ".tmux.conf" ".zimrc" )
 
   echo -e "This script will configure dotfiles for: \n\
   zsh with zim (and nice prompt), \n\
@@ -117,7 +117,7 @@ main() {
   vim with plugins, \n\
   tmux (compatible with vim). "
 
-  echo "RUN IN ZSH"
+  # echo "RUN IN ZSH"
 
   make_backup
   # install_programs

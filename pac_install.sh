@@ -2,9 +2,9 @@
 
 echo "Read the script!! Many programs will be installed"
 read
-sudo pacman -S --noconfirm blender vim cmake handbrake darktable yaourt virtualbox linux49-virtualbox-host-modules linux49-virtualbox-guest-modules fasd texmaker unison grsync xclip borg python-pyqt5 kodi hplip neovim python-neovim bleachbit codeblocks shellcheck clang ctags ipython powerline python-ipdb python-pytest python-nose python-numpy gitg wget tmux
+sudo pacman -S --noconfirm blender krita inkscape cmake handbrake darktable yaourt virtualbox fasd texmaker grsync syncthing-gtk xclip borg python-pyqt5 manjaro-printer hplip vim neovim python-neovim bleachbit codeblocks eclipse-common eclipse-java atom netbeans shellcheck clang ctags ipython powerline python-ipdb python-pytest python-jedi python-numpy autopep8 flake8 eslint gitg wget tmux ksysguard xfce4 xfce4-goodies root tree
 
-pip3 install --user jedi rope vim-vint proselint 
+pip3 install --user rope vim-vint proselint htmlhint 
 
 yaourt -S --noconfirm dropbox spotify clion pycharm-professional unity-editor chrome cling-git
 
@@ -23,3 +23,8 @@ yaourt -S --noconfirm dropbox spotify clion pycharm-professional unity-editor ch
 # about:config
 # browser.cache.disk.enable to fasle
 # browser.cache.memory.enable to true
+
+#fix keys for pacman
+# sudo pacman -S archlinux-keyring manjaro-keyring
+# sudo pacman-key --populate archlinux manjaro
+# sudo pacman-key --refresh
