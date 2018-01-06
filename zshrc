@@ -18,7 +18,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
+eval "$(fasd --init auto posix-alias zsh-hook zsh-ccomp-install zsh-wcomp-install)"
 
 source ~/.dotfiles/keybindings.sh
 source ~/.dotfiles/aliases.sh

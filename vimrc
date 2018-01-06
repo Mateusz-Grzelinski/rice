@@ -74,6 +74,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 Plug 'sjl/gundo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/calendar.vim'
