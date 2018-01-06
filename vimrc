@@ -104,7 +104,7 @@ let g:airline_theme='lucius'
 " General keybindings {{{
 let mapleader = " "
 let maplocalleader = ";"
-nnoremap <Leader>a :q!<CR>
+nnoremap <Leader>q :q!<CR>
 nnoremap <Leader>A :qa!<CR>
 nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e! $MYVIMRC<CR>
