@@ -1,5 +1,5 @@
 export TERM="xterm-256color" 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 alias la="ls -ahF"
 alias ll="ls -lhF" 
