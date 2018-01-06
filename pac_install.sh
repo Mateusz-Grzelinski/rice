@@ -28,3 +28,7 @@ yaourt -S --noconfirm dropbox spotify clion pycharm-professional unity-editor ch
 # sudo pacman -S archlinux-keyring manjaro-keyring
 # sudo pacman-key --populate archlinux manjaro
 # sudo pacman-key --refresh
+
+# fix virtual box:
+sudo pacman -S linux49-virtualbox-host-modules
+sudo /sbin/rcvboxdrv setup
