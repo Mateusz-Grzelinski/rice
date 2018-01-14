@@ -23,3 +23,8 @@ eval "$(fasd --init auto posix-alias zsh-ccomp-install)"
 source ~/.dotfiles/keybindings.sh
 source ~/.dotfiles/aliases.sh
 source ~/.dotfiles/prompt_zsh.sh
+
+# virtualenv wrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/bin/virtualenvwrapper.sh
