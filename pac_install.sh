@@ -2,11 +2,11 @@
 
 echo "Read the script!! Many programs will be installed"
 read
-sudo pacman -S --noconfirm blender krita inkscape cmake handbrake darktable yaourt virtualbox fasd texmaker grsync syncthing-gtk xclip borg python-pyqt5 manjaro-printer hplip vim neovim python-neovim bleachbit codeblocks eclipse-common eclipse-java atom netbeans shellcheck clang ctags ipython powerline python-ipdb python-pytest python-jedi python-numpy autopep8 flake8 eslint gitg wget tmux ksysguard xfce4 xfce4-goodies root tree
+sudo pacman -S --noconfirm blender krita inkscape make cmake handbrake darktable yaourt virtualbox fasd texmaker grsync syncthing-gtk xclip borg python-pyqt5 manjaro-printer hplip vim neovim bleachbit eclipse-common atom netbeans shellcheck clang ctags ipython powerline python-ipdb python-pytest python-jedi python-numpy autopep8 flake8 eslint gitg wget tmux ksysguard xfce4-goodies tree python-kivy nautilus nautilus-dropbox zsh 
 
-pip3 install --user rope vim-vint proselint htmlhint 
+pip3 install --user rope vim-vint proselint htmlhint tox twine jedi cookiecutter lice
 
-yaourt -S --noconfirm dropbox spotify clion pycharm-professional unity-editor chrome cling-git
+yaourt -S --noconfirm dropbox spotify clion pycharm-professional chrome  nautilus-open-terminal-git komorebi substance-designer substance-painter fpp-git
 
 # fix power fonts
 # wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
@@ -30,5 +30,5 @@ yaourt -S --noconfirm dropbox spotify clion pycharm-professional unity-editor ch
 # sudo pacman-key --refresh
 
 # fix virtual box:
-sudo pacman -S linux49-virtualbox-host-modules
-sudo /sbin/rcvboxdrv setup
+# sudo pacman -S linux49-virtualbox-host-modules
+# sudo /sbin/rcvboxdrv setup
