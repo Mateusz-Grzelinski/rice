@@ -367,7 +367,7 @@ let g:UltiSnipsExpandTrigger="<c-o>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 set rtp+=~/.dotfiles/
-let g:UltiSnipsSnippetsDir="~/.dotfiles/UltiSnips"
+" let g:UltiSnipsSnippetsDir="~/.dotfiles/UltiSnips"
 let g:UltiSnipsEditSplit="vertical"
 " }}}
 
