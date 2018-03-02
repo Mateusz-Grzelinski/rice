@@ -77,3 +77,16 @@ bindkey "" up_widget
     bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)
     bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directories)
 
+# <C-z> pause/go back to vim
+# https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/fancy-ctrl-z
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
