@@ -19,9 +19,4 @@ This is my vim config:
 
 # Installation
 
-Clone this repo to your home directory. You can yse installation script but it is pretty messy, it needs rewritting. But it works.
-You should read the installation script berofe launching.
-Installation script prompts to buckup your dotfiles.
-Dotfiles use the folowing programs: zsh, fasd, vim, tmux.
-zim will be installed to ~/.zim folder.
-
+Needs rework. Don't use.
