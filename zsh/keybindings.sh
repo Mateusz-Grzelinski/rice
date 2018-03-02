@@ -5,7 +5,7 @@ bindkey "\e[3~" delete-char
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
-# for tmux 
+# for tmux
 bindkey "" history-beginning-search-backward
 bindkey "" history-beginning-search-forward
 
@@ -14,9 +14,9 @@ bindkey '\e#' pound-insert
 setopt interactivecomments
 
 # clear screen with alt-l
-bindkey -s 'l' 'clear\n' 
+bindkey -s 'l' 'clear\n'
 
-# fast watch 
+# fast watch
     function fast_watch() {
         watch -n 0.5 "$BUFFER"
     }
@@ -90,3 +90,18 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/copybuffer/copybuffer.plugin.zsh
+copybuffer () {
+  if which clipcopy &>/dev/null; then
+    echo $BUFFER | clipcopy
+  else
+    echo "clipcopy function not found. Please make sure you have Oh My Zsh installed correctly."
+  fi
+}
+
+zle -N copybuffer
+
+bindkey "^O" copybuffer
+

@@ -1,8 +1,8 @@
-export TERM="xterm-256color" 
+export TERM="xterm-256color"
 export EDITOR="nvim"
 
 alias la="ls -ahF"
-alias ll="ls -lhF" 
+alias ll="ls -lhF"
 
 alias ez="vim ~/.dotfiles/zshrc"
 alias ezz="vim ~/.zshrc"
@@ -35,7 +35,7 @@ alias start="systemctl start"
 # don't show not readable files while searching
 alias findr="find ! -readable -prune -o"
 
-if fasd &> /dev/null; then 
+if fasd &> /dev/null; then
     alias a='fasd -a'        # any
     alias s='fasd -si'       # show / search / select
     alias d='fasd -d'        # directory
@@ -49,6 +49,7 @@ fi
 alias esshd="svim /etc/ssh/sshd_config"
 alias essh="svim /etc/ssh/ssh_config"
 
+alias c="clipcopy"
 alias externalip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 
