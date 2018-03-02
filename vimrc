@@ -356,7 +356,7 @@ let g:test#python#pytest#options = "-vs "
 " }}}
 
 " airline bar plugin, fix git symbol {{{
-" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 let g:airline_symbols_ascii = 0
 let g:cb_no_default_brackets = 1
 " }}}

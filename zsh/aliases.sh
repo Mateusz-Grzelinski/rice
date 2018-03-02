@@ -35,7 +35,7 @@ alias start="systemctl start"
 # don't show not readable files while searching
 alias findr="find ! -readable -prune -o"
 
-if [ fasd &> /dev/null ]; then 
+if fasd &> /dev/null; then 
     alias a='fasd -a'        # any
     alias s='fasd -si'       # show / search / select
     alias d='fasd -d'        # directory
@@ -49,9 +49,6 @@ fi
 alias esshd="svim /etc/ssh/sshd_config"
 alias essh="svim /etc/ssh/ssh_config"
 
-alias c="xclip"
-alias v="xclip -o"
-
-alias externalip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print $4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
+alias externalip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 

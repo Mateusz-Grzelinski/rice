@@ -20,9 +20,10 @@ compinit
 
 eval "$(fasd --init auto posix-alias zsh-hook zsh-ccomp-install zsh-wcomp-install)"
 
-source ~/.dotfiles/keybindings.sh
-source ~/.dotfiles/aliases.sh
-source ~/.dotfiles/prompt_zsh.sh
+mydir=${0:a:h}
+source ${mydir}/keybindings.sh
+source ${mydir}/aliases.sh
+source ${mydir}/prompt_zsh.sh
 
 # virtualenv wrapper
 export WORKON_HOME=$HOME/.virtualenvs
