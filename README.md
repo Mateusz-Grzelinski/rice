@@ -15,4 +15,4 @@ I mostly use Neovim. It's configuration is forked here: [neovim-config](https://
 Use at own risk!
 Install configuration with [./dots_install.sh](./dots_install.sh) 
 
-In [arch_aur_install.sh](arch_aur_install.sh) you will fing programs from repositories that I use. Nothing interesting :) 
+In [arch_aur_install.sh](arch_aur_install.sh) you will find programs from repositories that I use. Nothing interesting :) 
