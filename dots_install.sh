@@ -94,10 +94,10 @@ install_fonts() {
   font_dir="$HOME/.local/share/fonts"
   mkdir -p "$font_dir" || return
   cd "$font_dir" || return
-  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20Bold%20Italic%20for%20Powerline.ttf
-  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20Bold%20for%20Powerline.ttf
-  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20Italic%20for%20Powerline.ttf
-  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20for%20Powerline.ttf
+  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20Bold%20Italic%20for%20Powerline.ttf?raw=true
+  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20Bold%20for%20Powerline.ttf?raw=true
+  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20Italic%20for%20Powerline.ttf?raw=true
+  wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20for%20Powerline.ttf?raw=true
   cd "$current_dir" || return
 }
 
@@ -115,12 +115,12 @@ main() {
   zsh with zim, vim/neovim with plugins, tmux (compatible with vim). "
   echo "You should have fasd and zsh installed"
 
-  make_backup
-  link_dotfiles
-  install_nvim
-  install_zim
+  # make_backup
+  # link_dotfiles
+  # install_nvim
+  # install_zim
   install_fonts
-  extras
+  # extras
 }
 
 main "$@"
