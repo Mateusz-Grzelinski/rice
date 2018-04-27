@@ -6,19 +6,28 @@ echo "Read the script!! Many programs will be installed"
 read
 
 # Programs I always use
-sudo pacman -S --noconfirm chromium blender krita inkscape make cmake handbrake darktable yaourt virtualbox fasd texmaker  syncthing-gtk xclip borg hplip vim neovim bleachbit eclipse-common atom netbeans shellcheck clang ctags ipython powerline autopep8 flake8 eslint gitg wget tmux ksysguard tree python-kivy nautilus zsh ack flatix-theme-dark breeze-icons python-virtualenvwrapper pip
+sudo pacman -S --noconfirm chromium \
+  yaourt fasd xclip borg vim neovim powerline shellcheck clang ctags ipython autopep8 flake8 eslint tmux wget tree python-kivy ack zsh python-virtualenvwrapper pip\
+  blender krita inkscape handbrake darktable virtualbox texmaker  syncthing-gtk hplip bleachbit \
+  eclipse-common eclipse-java atom netbeans make cmake \
+  gitg nautilus flatix-theme-dark breeze-icons
 
 # commonly used packages
 pip3 install --user rope jedi cookiecutter lice PyYAML numpy neovim
 
 # python linters (from neovim)
-pip install --user pycodestyle pyflakes flake8 vim-vint proselint yamllint 
+pip install --user pycodestyle pyflakes flake8 vim-vint proselint yamllint
 
 # mostly heavy duty programs
-yaourt -S --noconfirm dropbox spotify clion pycharm-professional nautilus-dropbox substance-designer substance-painter fpp-git gcalcli
+yaourt -S --noconfirm \
+  dropbox spotify \
+  clion pycharm-professional \
+  substance-designer substance-painter \
+  nautilus-dropbox \
+  fpp-git gcalcli
 
 
-# fix for clion:
+# fix for clion (ncurses)
 # gpg --recv-keys 702353E0F7E48EDB
 
 ### usefull hacks: ####
