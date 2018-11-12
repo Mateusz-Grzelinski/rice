@@ -18,16 +18,17 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-eval "$(fasd --init auto posix-alias zsh-hook zsh-ccomp-install zsh-wcomp-install)"
+eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
 
 local mydir=${0:a:h}
 source ${mydir}/keybindings.sh
 source ${mydir}/aliases.sh
 source ${mydir}/prompt_zsh.sh
 source ${mydir}/copy_system_clip.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# virtualenv wrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/bin/virtualenvwrapper.sh
+eval "$(pipenv --completion)"
+
+# start tmux automatically
+if [[ ! $TERM =~ screen ]]; then
+  exec tmux
+fi

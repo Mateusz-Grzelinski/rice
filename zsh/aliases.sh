@@ -19,7 +19,6 @@ alias vims="vim -S .vim_session"
 alias sz="source ~/.zshrc"
 alias sb="source ~/.bashrc"
 alias st="source ~/.tmux.conf"
-alias sa="source ~/.dotfiles/.aliases"
 
 alias pypath='export PYTHONPATH=/usr/lib/root:`pwd`'
 
@@ -33,17 +32,6 @@ alias start="systemctl start"
 
 # don't show not readable files while searching
 alias findr="find ! -readable -prune -o"
-
-if fasd &> /dev/null; then
-    alias a='fasd -a'        # any
-    alias s='fasd -si'       # show / search / select
-    alias d='fasd -d'        # directory
-    alias f='fasd -f'        # file
-    alias sd='fasd -sid'     # interactive directory selection
-    alias sf='fasd -sif'     # interactive file selection
-    alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-    alias zz='fasd_cd -d -i' # cd with interactive selection
-fi
 
 alias esshd="svim /etc/ssh/sshd_config"
 alias essh="svim /etc/ssh/ssh_config"
