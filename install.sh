@@ -24,16 +24,17 @@ wget https://github.com/powerline/fonts/blob/master/Cousine/Cousine%20for%20Powe
 cd "$current_dir" || return
 
 
-dotfiles_src=("zsh/zshrc" "tmux.conf" "zsh/zimrc" "SpaceVim.d/init.toml")
-dotfiles_dest=(".zshrc" ".tmux.conf" ".zimrc" ".SpaceVim.d/init.toml")
+# override existing configuration
+dotfiles_src=("zsh/zshrc" "tmux.conf" "zsh/zimrc")
+dotfiles_dest=(".zshrc" ".tmux.conf" ".zimrc")
 echo "Linking dotfiles in $HOME to $HOME/.dotfiles"
-i=0
-while [ $i -lt ${#dotfiles_src[*]} ] ; do
-  file_src="${dotfiles_src[i]}";
-  rm -rf "${HOME:?}/$file_src"
-  echo "source ~/.dotfiles/${file_src}" > "$HOME/${dotfiles_dest[$i]}";
-  ((i++))
+for (( i = 0; i < ${#dotfiles_src[@]}; i++ )); do
+  src="$current_dir/${dotfiles_src[i]}"
+  dest="$HOME/${dotfiles_dest[i]}"
+  echo "source $src" > "$dest"
 done
+
+ln -s "current_dir/SpaceVim.d/init.toml" "$HOME/.SpaceVim.d/init.toml"
 
 # TODO: change zlogin to file template
 echo '[[ -s ${ZIM_HOME}/login_init.zsh ]] && source ${ZIM_HOME}/login_init.zsh' >> "$HOME"/.zlogin
