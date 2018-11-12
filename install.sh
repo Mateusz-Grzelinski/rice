@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo pacman -S zsh vim neovim tmux xclip \
+sudo pacman -S zsh vim neovim tmux xclip wget fasd \
   python-pip python-neovim python-pipenv
 
 # install zim
@@ -34,7 +34,7 @@ for (( i = 0; i < ${#dotfiles_src[@]}; i++ )); do
   echo "source $src" > "$dest"
 done
 
-ln -s "current_dir/SpaceVim.d/init.toml" "$HOME/.SpaceVim.d/init.toml"
+ln -s "$current_dir/SpaceVim.d/init.toml" "$HOME/.SpaceVim.d/init.toml"
 
 # TODO: change zlogin to file template
 echo '[[ -s ${ZIM_HOME}/login_init.zsh ]] && source ${ZIM_HOME}/login_init.zsh' >> "$HOME"/.zlogin
