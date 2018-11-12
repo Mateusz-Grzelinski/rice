@@ -26,7 +26,7 @@ source ${mydir}/aliases.sh
 source ${mydir}/prompt_zsh.sh
 source ${mydir}/copy_system_clip.zsh
 
-eval "$(pipenv --completion)"
+# eval "$(pipenv --completion)"
 
 # start tmux automatically
 if [[ ! $TERM =~ screen ]]; then
