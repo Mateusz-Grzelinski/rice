@@ -28,7 +28,3 @@ source ${mydir}/copy_system_clip.zsh
 
 # eval "$(pipenv --completion)"
 
-# start tmux automatically
-if [[ ! $TERM =~ screen ]]; then
-  exec tmux
-fi
