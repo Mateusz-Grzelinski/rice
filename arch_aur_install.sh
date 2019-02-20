@@ -3,7 +3,10 @@
 #### Script is used to automate personal system installation in arch environment ####
 
 echo "Read the script!! Many programs will be installed"
-read
+read -r
+
+# secret weapons
+sudo pacman -S bat fd diff-so-fancy dmenu ncdu tldr entr glances
 
 # Programs I always use
 sudo pacman -S --noconfirm chromium \
