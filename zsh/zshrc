@@ -25,9 +25,8 @@ source ${mydir}/keybindings.sh
 source ${mydir}/aliases.sh
 source ${mydir}/prompt_zsh.sh
 source ${mydir}/copy_system_clip.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # virtualenv wrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# source /usr/bin/virtualenvwrapper.sh
