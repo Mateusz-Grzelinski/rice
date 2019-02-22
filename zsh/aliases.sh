@@ -35,4 +35,8 @@ alias essh="svim /etc/ssh/ssh_config"
 
 alias c="clipcopy"
 
+# if comand exists
+if [ -x "$(command -v pacman)" ]; then
+  alias p="sudo pacman -S"
+fi
 

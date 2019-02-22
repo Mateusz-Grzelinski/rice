@@ -21,8 +21,8 @@ compinit
 eval "$(fasd --init zsh-hook zsh-wcomp zsh-wcomp-install zsh-ccomp-install zsh-wcomp-install)"
 
 local mydir=${0:a:h}
-source ${mydir}/keybindings.sh
 source ${mydir}/aliases.sh
+source ${mydir}/keybindings.sh
 source ${mydir}/prompt_zsh.sh
 source ${mydir}/copy_system_clip.zsh
 
