@@ -101,3 +101,17 @@ zle -N copybuffer
 
 bindkey "^O" copybuffer
 
+typeset -a ealiases
+ealiases=(`alias | sed -e 's/=.*//' | sed -E '/^(ls|grep)/d'`)
+
+_expand-ealias() {
+  if [[ $LBUFFER =~ "(^|[;|&])\s*(${(j:|:)ealiases})\$" ]]; then
+    zle _expand_alias
+    zle expand-word
+  fi
+  zle magic-space
+}
+
+zle -N _expand-ealias
+
+bindkey ' ' _expand-ealias
