@@ -8,50 +8,50 @@ setopt PROMPT_SUBST
 
 set_prompt() {
 
-    RPROMPT="                                    %n@%m"
-	# [
-	PS1="%{$fg[white]%}[%{$reset_color%}"
+  RPROMPT="                                    %n@%m"
+  # [
+  PS1="%{$fg[white]%}[%{$reset_color%}"
 
-	# Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
-	PS1+="%{$fg_bold[cyan]%}$(shrink_path -f)%{$reset_color%}"
+  # Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+  PS1+="%{$fg_bold[cyan]%}$(shrink_path -f)%{$reset_color%}"
 
-	# Status Code
-	PS1+='%(?.., %{$fg[red]%}%?%{$reset_color%})'
+  # Status Code
+  PS1+='%(?.., %{$fg[red]%}%?%{$reset_color%})'
 
-	# Git
-	if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
-		PS1+=', '
-		PS1+="%{$fg[blue]%}$(git rev-parse --abbrev-ref HEAD 2> /dev/null)%{$reset_color%}"
-		if [ $(git status --short | wc -l) -gt 0 ]; then 
-			PS1+="%{$fg[red]%}+$(git status --short | wc -l | awk '{$1=$1};1')%{$reset_color%}"
-		fi
-	fi
+  # Git
+  if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
+    PS1+=', '
+    PS1+="%{$fg[blue]%}$(git rev-parse --abbrev-ref HEAD 2> /dev/null)%{$reset_color%}"
+    if [ $(git status --short | wc -l) -gt 0 ]; then
+      PS1+="%{$fg[red]%}+$(git status --short | wc -l | awk '{$1=$1};1')%{$reset_color%}"
+    fi
+  fi
 
 
-	# Timer: http://stackoverflow.com/questions/2704635/is-there-a-way-to-find-the-running-time-of-the-last-executed-command-in-the-shel
-	if [[ $_elapsed[-1] -ne 0 ]]; then
-		PS1+=', '
-		PS1+="%{$fg[magenta]%}$_elapsed[-1]s%{$reset_color%}"
-	fi
+  # Timer: http://stackoverflow.com/questions/2704635/is-there-a-way-to-find-the-running-time-of-the-last-executed-command-in-the-shel
+  if [[ $_elapsed[-1] -ne 0 ]]; then
+    PS1+=', '
+    PS1+="%{$fg[magenta]%}$_elapsed[-1]s%{$reset_color%}"
+  fi
 
-	# PID
-	# if [[ $! -ne 0 ]]; then
-	#     PS1+=', '
-	#     PS1+="%{$fg[yellow]%}PID:$!%{$reset_color%}"
-	# fi
+  # PID
+  # if [[ $! -ne 0 ]]; then
+  #     PS1+=', '
+  #     PS1+="%{$fg[yellow]%}PID:$!%{$reset_color%}"
+  # fi
 
-	# Sudo: https://superuser.com/questions/195781/sudo-is-there-a-command-to-check-if-i-have-sudo-and-or-how-much-time-is-left
-	CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
-	if [ ${CAN_I_RUN_SUDO} -gt 0 ]
-	then
+  # Sudo: https://superuser.com/questions/195781/sudo-is-there-a-command-to-check-if-i-have-sudo-and-or-how-much-time-is-left
+  CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
+  if [ ${CAN_I_RUN_SUDO} -gt 0 ]
+  then
 
-		# PS1+=', '
-		# PS1+="%{$fg_bold[red]%}SUDO%{$reset_color%}"
-        RPROMPT+=%{$fg_bold[red]%}*%{$reset_color%}
+    # PS1+=', '
+    # PS1+="%{$fg_bold[red]%}SUDO%{$reset_color%}"
+    RPROMPT+=%{$fg_bold[red]%}*%{$reset_color%}
 
-	fi
+  fi
 
-	PS1+="%{$fg[white]%}]: %{$reset_color%}% "
+  PS1+="%{$fg[white]%}]: %{$reset_color%}% "
 }
 
 # https://github.com/robbyrussell/oh-my-zsh/pull/5262/commits/a51ad6f0f73e5dcfc36415bf1b0238aad1307bbe
@@ -79,29 +79,29 @@ shrink_path () {
 
    while [[ $1 == -* ]]; do
       case $1 in
-	 -f|--fish)
-	    lastfull=1
-	    short=1
-	    tilde=1
-	    ;;
-	 -h|--help)
-	    print 'Usage: shrink_path [-f -l -s -t] [directory]'
-	    print ' -f, --fish      fish-simulation, like -l -s -t'
-	    print ' -l, --last      Print the last directory''s full name'
-	    print ' -s, --short     Truncate directory names to the first character'
-	    print ' -t, --tilde     Substitute ~ for the home directory'
-	    print ' -T, --nameddirs Substitute named directories as well'
-	    print 'The long options can also be set via zstyle, like'
-	    print '  zstyle :prompt:shrink_path fish yes'
-	    return 0
-	    ;;
-	 -l|--last) lastfull=1 ;;
-	 -s|--short) short=1 ;;
-	 -t|--tilde) tilde=1 ;;
-	 -T|--nameddirs)
-	    tilde=1
-	    named=1
-	    ;;
+   -f|--fish)
+      lastfull=1
+      short=1
+      tilde=1
+      ;;
+   -h|--help)
+      print 'Usage: shrink_path [-f -l -s -t] [directory]'
+      print ' -f, --fish      fish-simulation, like -l -s -t'
+      print ' -l, --last      Print the last directory''s full name'
+      print ' -s, --short     Truncate directory names to the first character'
+      print ' -t, --tilde     Substitute ~ for the home directory'
+      print ' -T, --nameddirs Substitute named directories as well'
+      print 'The long options can also be set via zstyle, like'
+      print '  zstyle :prompt:shrink_path fish yes'
+      return 0
+      ;;
+   -l|--last) lastfull=1 ;;
+   -s|--short) short=1 ;;
+   -t|--tilde) tilde=1 ;;
+   -T|--nameddirs)
+      tilde=1
+      named=1
+      ;;
       esac
       shift
    done
@@ -114,7 +114,7 @@ shrink_path () {
 
    if (( named )) {
       for part in ${(k)nameddirs}; {
-	 [[ $dir == ${nameddirs[$part]}(/*|) ]] && dir=${dir/${nameddirs[$part]}/\~$part}
+   [[ $dir == ${nameddirs[$part]}(/*|) ]] && dir=${dir/${nameddirs[$part]}/\~$part}
       }
    }
    (( tilde )) && dir=${dir/$HOME/\~}
@@ -159,7 +159,7 @@ preexec () {
 
 precmd () {
    (( _start >= 0 )) && _elapsed+=($(( SECONDS-_start )))
-   _start=-1 
+   _start=-1
 }
 
 
