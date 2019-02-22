@@ -34,6 +34,9 @@ set_prompt() {
     PS1+="%{$fg[magenta]%}$_elapsed[-1]s%{$reset_color%}"
   fi
 
+  # clear time - show it only once
+  set -A _elapsed
+
   # PID
   # if [[ $! -ne 0 ]]; then
   #     PS1+=', '
