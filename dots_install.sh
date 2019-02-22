@@ -90,6 +90,7 @@ install_zim() {
 }
 
 install_fonts() {
+  # add https://github.com/tonsky/FiraCode ?
   current_dir="$( cd "$( dirname "$0" )" && pwd )"
   font_dir="$HOME/.local/share/fonts"
   mkdir -p "$font_dir" || return
