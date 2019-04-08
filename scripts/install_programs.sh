@@ -36,7 +36,7 @@ sudo pacman -S --noconfirm --needed \
   otf-fira-code
 
 # common from AUR
-sudo pacman -S --noconfirm --needed yaourt
+sudo pacman -S --noconfirm --needed yay
 yay -S --noconfirm --needed \
   python-license python-cookiecutter \
   dropbox spotify \
