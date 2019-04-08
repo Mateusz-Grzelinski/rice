@@ -10,7 +10,8 @@ sudo pacman -S --noconfirm --needed bat fd diff-so-fancy dmenu ncdu tldr entr gl
 
 # minimum for dotfiles
 sudo pacman -S --noconfirm --needed \
-  zsh fasd xclip vim tmux tree ack
+  zsh fasd xclip vim tmux tree ack git
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 # programs needed for nvim config
 sudo pacman -S --noconfirm --needed \
@@ -18,12 +19,13 @@ sudo pacman -S --noconfirm --needed \
 
 # neovim linters/formates
 sudo pacman -S --noconfirm --needed \
-  shellcheck autopep8 flake8 python-pyflakes python-pycodestyle eslint shfmt vint proselint python-jedi yamllint
+  shellcheck autopep8 flake8 python-pyflakes python-pycodestyle eslint shfmt vint \
+  proselint python-jedi yamllint prettier
 
 # common
 sudo pacman -S --noconfirm --needed \
   clang ctags ipython wget python-numpy \
-  blender gimp texmaker gitg
+  blender gimp texlive-core texmaker gitg
 
 # editors
 sudo pacman -S --noconfirm --needed \
