@@ -3,3 +3,4 @@ vim/bundle/*
 vim/local/*
 vim/tmp/*
 vim/spell/*
+tmux*.log
