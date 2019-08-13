@@ -53,7 +53,6 @@ set_prompt() {
   fi
 
   # Git
-  echo "git $PROMPT_SHOW_GIT, remote: $REMOTE_FS"
   if [[ $PROMPT_SHOW_GIT = true && $REMOTE_FS = false ]]; then
     if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
       PS1+=', '
