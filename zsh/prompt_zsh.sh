@@ -5,25 +5,9 @@
 autoload -U colors && colors
 
 setopt PROMPT_SUBST
+REMOTE_FS=false
 
 set_prompt() {
-
-  FS=$(df | grep "$(stat --format %m .)$" | tr -s ' ')
-
-  # current partition
-  PARTITION=$(echo ${FS} | cut -f1 -d' ')
-  # used momory on current partition
-  USED=$(echo ${FS} | cut -f5 -d' ')
-
-  # add some spaces to make RPROMPT disapper faster
-  RPROMPT="                   %n@%m"
-  RPROMPT+=":%{$fg[green]%}"
-  RPROMPT+="${PARTITION}"
-  RPROMPT+="%{$fg[white]%}"
-  RPROMPT+=","
-  RPROMPT+="%{$fg[blue]%}"
-  RPROMPT+="${USED}%"
-  RPROMPT+="%{$fg[white]%}"
 
   # Sudo: https://superuser.com/questions/195781/sudo-is-there-a-command-to-check-if-i-have-sudo-and-or-how-much-time-is-left
   CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
@@ -42,9 +26,35 @@ set_prompt() {
   # Status Code
   PS1+='%(?.., %{$fg[red]%}%?%{$reset_color%})'
 
-  # make prompt less bloated when using remote fs
-  if [[ ${PARTITION} == /* ]]; then
-    # Git
+  # add some spaces to make RPROMPT disapper faster
+  RPROMPT="                   %n@%m"
+
+  if [[ $PROMPT_SHOW_PARTITION = true ]]; then
+    FS=$(df | grep "$(stat --format %m .)$" | tr -s ' ')
+    # current partition
+    PARTITION=$(echo ${FS} | cut -f1 -d' ')
+    # used momory on current partition
+    USED=$(echo ${FS} | cut -f5 -d' ')
+
+    RPROMPT+=":%{$fg[green]%}"
+    RPROMPT+="${PARTITION}"
+    RPROMPT+="%{$fg[white]%}"
+    RPROMPT+=","
+    RPROMPT+="%{$fg[blue]%}"
+    RPROMPT+="${USED}%"
+    RPROMPT+="%{$fg[white]%}"
+
+    # make prompt less bloated when using remote fs
+    if [[ ${PARTITION} == /* ]]; then
+      REMOTE_FS=false
+    else
+      REMOTE_FS=true
+    fi
+  fi
+
+  # Git
+  echo "git $PROMPT_SHOW_GIT, remote: $REMOTE_FS"
+  if [[ $PROMPT_SHOW_GIT = true && $REMOTE_FS = false ]]; then
     if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
       PS1+=', '
       PS1+="%{$fg[blue]%}$(git rev-parse --abbrev-ref HEAD 2> /dev/null)%{$reset_color%}"
@@ -52,7 +62,9 @@ set_prompt() {
         PS1+="%{$fg[red]%}+$(git status --short | wc -l | awk '{$1=$1};1')%{$reset_color%}"
       fi
     fi
+  fi
 
+  if [[ $PROMPT_SHOW_TIME = true ]]; then
     # Timer: http://stackoverflow.com/questions/2704635/is-there-a-way-to-find-the-running-time-of-the-last-executed-command-in-the-shel
     if [[ $_elapsed[-1] -ne 0 ]]; then
       PS1+=', '
@@ -63,6 +75,7 @@ set_prompt() {
     set -A _elapsed
   fi
 
+  # close parenthesis
   PS1+="%{$fg[$BRACES_COLOR]%}]%{$fg[white]%}: %{$reset_color%}% "
 }
 
@@ -164,17 +177,17 @@ shrink_path () {
 }
 
 
+if [[ ${PROMPT_SHOW_TIME} = true ]]; then
+  preexec () {
+    (( ${#_elapsed[@]} > 1000 )) && _elapsed=(${_elapsed[@]: -1000})
+    _start=$SECONDS
+  }
 
-preexec () {
-  (( ${#_elapsed[@]} > 1000 )) && _elapsed=(${_elapsed[@]: -1000})
-  _start=$SECONDS
-}
-
-precmd () {
-  (( _start >= 0 )) && _elapsed+=($(( SECONDS-_start )))
-  _start=-1
-}
-
+  precmd () {
+    (( _start >= 0 )) && _elapsed+=($(( SECONDS-_start )))
+    _start=-1
+  }
+fi
 
 precmd_functions+=set_prompt
 

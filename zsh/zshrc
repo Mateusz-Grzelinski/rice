@@ -1,5 +1,10 @@
+# zsh main config file
 
 stty -ixon
+
+${PROMPT_SHOW_PARTITION:=false}
+${PROMPT_SHOW_TIME:=true}
+${PROMPT_SHOW_GIT:=true}
 
 # Source zim
 if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
