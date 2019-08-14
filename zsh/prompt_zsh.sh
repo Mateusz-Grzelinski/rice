@@ -46,9 +46,9 @@ set_prompt() {
 
     # make prompt less bloated when using remote fs
     if [[ ${PARTITION} == /* ]]; then
-      REMOTE_FS=false
-    else
       REMOTE_FS=true
+    else
+      REMOTE_FS=false
     fi
   fi
 
